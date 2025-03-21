@@ -13,4 +13,10 @@
     <item
         android:id="@+id/menuHelp"
         android:title="Help" />
+    <item
+        android:id="@+id/menuparametre"
+        android:title="Setting" />
+    <item
+        android:id="@+id/menulogout"
+        android:title="Logout" />
 </menu>
