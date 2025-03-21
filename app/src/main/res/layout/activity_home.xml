@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="108dp">
+
+        <Button
+            android:id="@+id/menu"
+            android:layout_width="60dp"
+            android:layout_height="48dp"
+            android:background="@drawable/rounded_button"
+            android:text="menu"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.057"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btBack"
+            android:layout_width="87dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="148dp"
+            android:background="@drawable/rounded_button"
+            android:minWidth="87dp"
+            android:minHeight="32dp"
+            android:text="Logout"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/menu"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btEmp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="92dp"
+            android:background="@drawable/rounded_button"
+            android:text="Employer"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btStock"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="92dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/rounded_button"
+            android:text="Stock"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/btEmp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btLivr"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/rounded_button"
+            android:text="Livraison"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btEmp"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/btComm"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/rounded_button"
+            android:text="Commande"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/btLivr"
+            app:layout_constraintTop_toBottomOf="@+id/btStock" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
