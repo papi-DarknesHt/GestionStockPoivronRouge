@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/edittextnom"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="Nom"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/editTextprenom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextprenom"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="Prenom"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/edittextemail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edittextnom" />
+
+        <EditText
+            android:id="@+id/edittextemail"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="75dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="75dp"
+            android:ems="10"
+            android:hint="exemple@gmail.com"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextprenom" />
+
+        <EditText
+            android:id="@+id/edittextpassword"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="75dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="75dp"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edittextemail" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="300dp"
+            android:layout_height="125dp"
+            android:layout_marginStart="75dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="75dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edittextpassword">
+
+            <RadioButton
+                android:id="@+id/rbtstatutAdm"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:text="Admin" />
+
+            <RadioButton
+                android:id="@+id/rbtstatutManager"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:text="Manager" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btajoutcompte"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="136dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="135dp"
+            android:text="Ajouter "
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

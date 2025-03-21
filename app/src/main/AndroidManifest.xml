@@ -23,8 +23,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity"/>
-        <activity android:name=".Gestion_activity"/>
+        <activity android:name=".HomeActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/homename"
+            />
+        <activity android:name=".Gestion_activity"
+            android:parentActivityName=".HomeActivity"
+            android:label="@string/gestion"
+
+            />
+        <activity android:name=".ajoutCompte_Activity"
+            android:label="@string/ajout"
+            android:parentActivityName=".Gestion_activity"/>
     </application>
 
 </manifest>

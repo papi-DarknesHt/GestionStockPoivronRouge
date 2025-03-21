@@ -21,14 +21,16 @@ class MainActivity : ComponentActivity() {
         setContentView(R.layout.activity_main)
 //        val home = HomeActivity()
         val intentHome = Intent(this, HomeActivity::class.java)
-        var mail: EditText? = null; var password: EditText? = null
-        var btlogin: Button? = findViewById<Button>(R.id.connection)
+//        var mail: EditText? = null; var password: EditText? = null
+        val btlogin: Button? = findViewById<Button>(R.id.connection)
         if (btlogin != null) {
             btlogin.setOnClickListener(View.OnClickListener {
-                mail = findViewById<View>(R.id.mail) as EditText
-                password = findViewById<View>(R.id.password) as EditText
+                val mail = findViewById<View>(R.id.mail) as EditText
+                val password = findViewById<View>(R.id.password) as EditText
                 val email: String = mail!!.getText().toString()
                 val psd: String = password!!.getText().toString()
+                mail.setText("")
+                password.setText("")
                 if (email == "napoleonwagnerson@gmail.com" || psd == "admin") {
                     Toast.makeText(this@MainActivity, "Connection reussi", Toast.LENGTH_SHORT).show()
                     startActivity(intentHome)
