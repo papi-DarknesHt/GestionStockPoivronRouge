@@ -2,15 +2,6 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/menuEmployer"
-        android:title="Employer"/>
-    <item
-        android:id="@+id/menuStock"
-        android:title="Stock" />
-    <item
-        android:id="@+id/menulivraison"
-        android:title="Livraison" />
-    <item
         android:id="@+id/menuHelp"
         android:title="Help" />
     <item
