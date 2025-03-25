@@ -3,6 +3,7 @@ package com.example.gestionstockpoivronrouge
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -24,18 +25,25 @@ class Gestion_activity: Activity() {
         val listCompte = findViewById<ListView>(R.id.listviewCompte)
         val Compte = arrayListOf(
             GestionCompte_data("5","Napoleon","Wagnerson","napoleonwagnerson@gmail.com","Admin","admin",R.drawable.logo),
-            GestionCompte_data("5","Napoleon","Wagnerson","napoleonwagnerson@gmail.com","Admin","admin",R.drawable.logo),
-            GestionCompte_data("5","Napoleon","Wagnerson","napoleonwagnerson@gmail.com","Admin","admin",R.drawable.logo)
+            GestionCompte_data("6","Napoleon","Wagnerson","napoleonwagnerson@gmail.com","Admin","admin",R.drawable.logo),
+            GestionCompte_data("7","Napoleon","Wagnerson","napoleonwagnerson@gmail.com","Admin","admin",R.drawable.logo)
         )
         val adapter = GestionAdapter(this,R.layout.item_gestion_compte,Compte)
         listCompte.adapter = adapter
 
         listCompte.setOnItemClickListener{ adapterView, view, position, id ->
+//            val clickedCompte = Compte[position]
             val clickedCompte = Compte[position]
-            Intent(this, DetailCompte_Activity::class.java).also {
-                it.putExtra("id",clickedCompte.id)
-                startActivity(it)
-            }
+            Log.d("AfficherListe", "Valeur de clickedCompte.id : ${clickedCompte.id}")
+            val intent =Intent(this, DetailCompte_Activity::class.java)
+            intent.putExtra("id",clickedCompte.id)
+            intent.putExtra("nom",clickedCompte.nom)
+            intent.putExtra("prenom",clickedCompte.prenom)
+            intent.putExtra("email",clickedCompte.email)
+            intent.putExtra("statut",clickedCompte.statut)
+            intent.putExtra("image",clickedCompte.image)
+            startActivity(intent)
+
         }
     }
 
