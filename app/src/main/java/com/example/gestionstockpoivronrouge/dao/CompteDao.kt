@@ -1,6 +1,7 @@
 package com.example.gestionstockpoivronrouge.dao
 import com.example.gestionstockpoivronrouge.model.Compte
 import androidx.room.*
+import androidx.room.Dao
 
 @Dao
 interface CompteDao {

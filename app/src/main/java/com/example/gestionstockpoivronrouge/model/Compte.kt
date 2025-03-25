@@ -1,5 +1,6 @@
 package com.example.gestionstockpoivronrouge.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -10,6 +11,8 @@ data class Compte(
     val nom: String,
     val prenom: String,
     val email: String,
+    @ColumnInfo(name = "statut", defaultValue = "manager")
     val statut: String, // Admin, manager
+    @ColumnInfo(name = "password", defaultValue = "admin")
     val password: String
 )

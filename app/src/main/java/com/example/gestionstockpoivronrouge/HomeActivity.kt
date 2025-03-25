@@ -9,13 +9,14 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.PopupMenu
+import androidx.appcompat.app.AppCompatActivity
 
-class HomeActivity: Activity() {
+class HomeActivity: AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-//        var btback : Button? = findViewById(R.id.btBack)
+//        creation d'un itent pour gestion activity
         val intentCompte = Intent(this,Gestion_activity ::class.java)
 
         var btCompte : Button? = findViewById(R.id.btCompt)

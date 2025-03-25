@@ -10,13 +10,15 @@ import android.widget.AdapterView
 import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
 
-class Gestion_activity: Activity() {
+class Gestion_activity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_compte)
+//        setContentView(R.layout.activity_compte)
+        setContentView(R.layout.activity_gestioncompte)
         afficherListe()
     }
 
@@ -27,12 +29,19 @@ class Gestion_activity: Activity() {
         )
         val adapter = GestionAdapter(this,R.layout.item_gestion_compte,Compte)
         listCompte.adapter = adapter
-
         listCompte.setOnItemClickListener{ adapterView, view, position, id ->
             val clickedCompte = Compte[position]
+            val intent =Intent(this, DetailCompte_Activity::class.java)
+            intent.putExtra("id",clickedCompte.id)
+            intent.putExtra("nom",clickedCompte.nom)
+            intent.putExtra("prenom",clickedCompte.prenom)
+            intent.putExtra("email",clickedCompte.email)
+            intent.putExtra("statut",clickedCompte.statut)
+            intent.putExtra("image",clickedCompte.image)
+            startActivity(intent)
         }
     }
-
+//    option menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.comptemenu,menu)
         return super.onCreateOptionsMenu(menu)

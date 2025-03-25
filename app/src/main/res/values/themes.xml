@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.GestionStockPoivronRouge" parent="android:Theme.Material.Light">
+    <style name="Theme.GestionStockPoivronRouge" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">#E62F27</item>
         <item name="colorPrimaryVariant">#E25049</item>
         <item name="colorOnPrimary">#FFFFFF</item>

@@ -15,7 +15,8 @@
         <activity
             android:name=".DetailCompte_Activity"
             android:exported="false"
-            android:parentActivityName=".Gestion_activity"
+            android:theme="@style/Theme.GestionStockPoivronRouge"
+            android:parentActivityName=".Gestion_activity" />
             />
         <activity
             android:name=".MainActivity"
@@ -30,15 +31,22 @@
         </activity>
         <activity
             android:name=".HomeActivity"
-            android:label="@string/homename" />
+            android:label="@string/homename"
+            android:theme="@style/Theme.GestionStockPoivronRouge"/>
+            />
+
         <activity
             android:name=".Gestion_activity"
             android:label="@string/gestion"
-            android:parentActivityName=".HomeActivity" />
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/Theme.GestionStockPoivronRouge"/>
+            />
         <activity
             android:name=".ajoutCompte_Activity"
             android:label="@string/ajout"
-            android:parentActivityName=".Gestion_activity" />
+            android:parentActivityName=".Gestion_activity"
+            android:theme="@style/Theme.GestionStockPoivronRouge"/>
+            />
     </application>
 
 </manifest>
