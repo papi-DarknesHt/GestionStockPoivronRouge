@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.GestionStockPoivronRouge" parent="android:Theme.Material.Light">
+        <item name="colorPrimary">#E62F27</item>
+        <item name="colorPrimaryVariant">#E25049</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+    </style>
+    <style name="Theme.GestionStockPoivronRouge.NoActionBar" parent="Theme.GestionStockPoivronRouge">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+</resources>
