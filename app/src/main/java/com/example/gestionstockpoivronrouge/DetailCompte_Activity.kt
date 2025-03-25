@@ -32,18 +32,6 @@ class DetailCompte_Activity : Activity() {
         val email = intent.getStringExtra("email")
         val statut = intent.getStringExtra("statut")
         val image = intent.getIntExtra("image",0)
-//        Log.d("DetailCompte", "id est null : ${id == null}")
-//        Log.d("DetailCompte", "Valeur de id : $id")
-//
-//        if (id != null) {
-//            if(id.isNotEmpty()){
-//                idDetail.text = id
-//            }else{
-//                Log.d("DetailCompte", "id est vide")
-//            }
-//        }else{
-//            Log.d("DetailCompte", "id est null")
-//        }
         idDetail.text = id
         nomDetail.text = nom
         prenomDetail.text = prenom
