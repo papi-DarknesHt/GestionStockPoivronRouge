@@ -27,7 +27,7 @@ class GestionAdapter(
         prenom.text = compte.prenom
         email.text = compte.email
         statut.text = compte.statut
-        image.setImageResource(compte.image)
+        //image.setImageResource(compte.image)
 
 
         return itemView

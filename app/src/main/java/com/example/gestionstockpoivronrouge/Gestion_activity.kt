@@ -16,7 +16,7 @@ class Gestion_activity: Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_gestioncompte)
+        setContentView(R.layout.activity_compte)
         afficherListe()
     }
 
