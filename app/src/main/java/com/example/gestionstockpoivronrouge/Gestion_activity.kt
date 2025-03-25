@@ -24,18 +24,12 @@ class Gestion_activity: Activity() {
         val listCompte = findViewById<ListView>(R.id.listviewCompte)
         val Compte = arrayListOf(
             GestionCompte_data("5","Napoleon","Wagnerson","napoleonwagnerson@gmail.com","Admin","admin",R.drawable.logo),
-            GestionCompte_data("5","Napoleon","Wagnerson","napoleonwagnerson@gmail.com","Admin","admin",R.drawable.logo),
-            GestionCompte_data("5","Napoleon","Wagnerson","napoleonwagnerson@gmail.com","Admin","admin",R.drawable.logo)
         )
         val adapter = GestionAdapter(this,R.layout.item_gestion_compte,Compte)
         listCompte.adapter = adapter
 
         listCompte.setOnItemClickListener{ adapterView, view, position, id ->
             val clickedCompte = Compte[position]
-            Intent(this, DetailCompte_Activity::class.java).also {
-                it.putExtra("id",clickedCompte.id)
-                startActivity(it)
-            }
         }
     }
 

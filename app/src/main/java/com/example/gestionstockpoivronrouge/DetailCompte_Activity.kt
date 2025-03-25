@@ -11,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat
 class DetailCompte_Activity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         val idDetail = findViewById<TextView>(R.id.dCompteId)
         val id = intent.getStringExtra("id")
         idDetail.text = id
