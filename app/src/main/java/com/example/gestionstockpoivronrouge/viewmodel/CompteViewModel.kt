@@ -1,5 +1,6 @@
 package com.example.gestionstockpoivronrouge.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
@@ -8,6 +9,7 @@ import com.example.gestionstockpoivronrouge.repository.CompteRepository
 
 class CompteViewModel(private val repository: CompteRepository) : ViewModel() {
 
+    val allComptes :LiveData<List<Compte>> = repository.allcomptes
     fun ajouterCompte(compte: Compte, onResult: (Boolean, String) -> Unit) {
         viewModelScope.launch {
             try {
