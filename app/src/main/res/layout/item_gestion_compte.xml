@@ -5,63 +5,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageCompte"
-        android:layout_width="142dp"
-        android:layout_height="145dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <TextView
         android:id="@+id/idCompte"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
         android:text="Id"
-        app:layout_constraintStart_toEndOf="@+id/imageCompte"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/nomCompte"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:text="Nom"
-        app:layout_constraintStart_toEndOf="@+id/imageCompte"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idCompte" />
 
     <TextView
         android:id="@+id/prenomCompte"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:text="Prenom"
-        app:layout_constraintStart_toEndOf="@+id/imageCompte"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nomCompte" />
 
     <TextView
         android:id="@+id/statuCompte"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="71dp"
         android:text="Statut"
-        app:layout_constraintStart_toEndOf="@+id/imageCompte"
-        app:layout_constraintTop_toBottomOf="@+id/prenomCompte" />
+        app:layout_constraintStart_toEndOf="@+id/nomCompte"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/emailCompte"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="12dp"
         android:text="email"
-        app:layout_constraintStart_toEndOf="@+id/imageCompte"
+        app:layout_constraintStart_toEndOf="@+id/prenomCompte"
         app:layout_constraintTop_toBottomOf="@+id/statuCompte" />
 </androidx.constraintlayout.widget.ConstraintLayout>
