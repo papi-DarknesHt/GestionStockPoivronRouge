@@ -7,7 +7,7 @@ import androidx.room.Dao
 @Dao
 interface CompteDao {
 
-    @Query("SELECT * FROM comptes")
+    @Query("SELECT * FROM comptes ORDER BY nom ASC")
     fun getAllComptes(): LiveData<List<Compte>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -18,9 +18,6 @@ interface CompteDao {
 
     @Delete
     suspend fun supprimerCompte(compte: Compte)
-
-    @Query("SELECT * FROM comptes ORDER BY nom ASC")
-    fun listerComptes(): List<Compte>
 
     @Query("SELECT * FROM comptes WHERE email = :email LIMIT 1")
     suspend fun getCompteParEmail(email: String): Compte?

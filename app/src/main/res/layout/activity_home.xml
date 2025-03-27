@@ -18,8 +18,8 @@
             android:id="@+id/btCompt"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="172dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="200dp"
             android:background="@drawable/rounded_button"
             android:text="Compte"
             android:textColor="#FFFFFF"
@@ -32,8 +32,7 @@
             android:id="@+id/btProd"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginStart="72dp"
-            android:layout_marginTop="172dp"
+            android:layout_marginTop="200dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/rounded_button"
             android:text="Produit"
@@ -41,8 +40,6 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/btCompt"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
@@ -50,32 +47,28 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="151dp"
-            android:layout_marginBottom="100dp"
+            android:layout_marginBottom="60dp"
             android:background="@drawable/rounded_button"
-            android:text="Stock"
+            android:text="Livraison"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btCompt" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btComm"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginTop="151dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="100dp"
+            android:layout_marginBottom="60dp"
             android:background="@drawable/rounded_button"
-            android:text="DashBoard"
+            android:text="Commande"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btProd" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

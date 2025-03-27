@@ -14,10 +14,7 @@ appcompat = "1.7.0"
 material = "1.12.0"
 activity = "1.10.1"
 room = "2.6.1"
-roomCommon = "2.6.1"
-annotation = "1.6.0"
-lifecycleLivedataKtx = "2.8.7"
-lifecycleViewmodelKtx = "2.8.7" # Ajout de la version de Room
+roomCommon = "2.6.1" # Ajout de la version de Room
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -42,10 +39,7 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" } # Dépendance Room principale
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" } # Compilateur Room (pour KSP)
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
-androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
-androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
-androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
-androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" } # Support pour les coroutines Kotlin
+androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" } # Support pour les coroutines Kotlin
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
