@@ -18,11 +18,17 @@ class HomeActivity: AppCompatActivity() {
         setContentView(R.layout.activity_home)
 //        creation d'un itent pour gestion activity
         val intentCompte = Intent(this,Gestion_activity ::class.java)
-
+        val intentProduit = Intent(this,Produit_Activity ::class.java )
         var btCompte : Button? = findViewById(R.id.btCompt)
         if (btCompte != null) {
             btCompte.setOnClickListener(View.OnClickListener {
                 startActivity(intentCompte)
+            })
+        }
+        var btProduit : Button? = findViewById(R.id.btProd)
+        if(btProduit!= null){
+            btProduit.setOnClickListener(View.OnClickListener {
+                startActivity(intentProduit)
             })
         }
     }// fin Oncreate

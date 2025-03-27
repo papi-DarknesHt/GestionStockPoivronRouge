@@ -13,11 +13,14 @@
         android:theme="@style/Theme.GestionStockPoivronRouge"
         tools:targetApi="31">
         <activity
-            android:name=".DetailCompte_Activity"
+            android:name=".ui.login.LoginActivity"
             android:exported="false"
-            android:theme="@style/Theme.GestionStockPoivronRouge"
-            android:parentActivityName=".Gestion_activity" />
-
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".Produit_Activity"
+            android:label="@string/produit"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/Theme.GestionStockPoivronRouge" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -32,18 +35,17 @@
         <activity
             android:name=".HomeActivity"
             android:label="@string/homename"
-            android:theme="@style/Theme.GestionStockPoivronRouge"/>
-
+            android:theme="@style/Theme.GestionStockPoivronRouge" />
         <activity
             android:name=".Gestion_activity"
             android:label="@string/gestion"
             android:parentActivityName=".HomeActivity"
-            android:theme="@style/Theme.GestionStockPoivronRouge"/>
+            android:theme="@style/Theme.GestionStockPoivronRouge" />
         <activity
             android:name=".ajoutCompte_Activity"
             android:label="@string/ajout"
             android:parentActivityName=".Gestion_activity"
-            android:theme="@style/Theme.GestionStockPoivronRouge"/>
+            android:theme="@style/Theme.GestionStockPoivronRouge" />
     </application>
 
 </manifest>

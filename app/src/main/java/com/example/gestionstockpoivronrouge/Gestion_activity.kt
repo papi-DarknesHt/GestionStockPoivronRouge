@@ -44,32 +44,33 @@ class Gestion_activity: AppCompatActivity() {
 
         })
 
-        listCompte.onItemClickListener = AdapterView.OnItemClickListener{ _, _, position, _ ->
-            if(position>=0) {
-                val clickedCompte = listCompte.getItemAtPosition(position) as Compte
-                    val intent = Intent(this, DetailCompte_Activity::class.java)
-                    intent.putExtra("id", clickedCompte.id)
-                    intent.putExtra("nom", clickedCompte.nom)
-                    intent.putExtra("prenom", clickedCompte.prenom)
-                    intent.putExtra("email", clickedCompte.email)
-                    intent.putExtra("statut", clickedCompte.statut)
-                    startActivity(intent)
-
-            }else{
-                Log.e("Gestion Compte","Position invalide: $position")
-            }
-        }
+//        listCompte.onItemClickListener = AdapterView.OnItemClickListener{ _, _, position, _ ->
+//            if(position>=0) {
+//                val clickedCompte = listCompte.getItemAtPosition(position) as Compte
+//                    val intent = Intent(this, DetailCompte_Activity::class.java)
+//                    intent.putExtra("id", clickedCompte.id)
+//                    intent.putExtra("nom", clickedCompte.nom)
+//                    intent.putExtra("prenom", clickedCompte.prenom)
+//                    intent.putExtra("email", clickedCompte.email)
+//                    intent.putExtra("statut", clickedCompte.statut)
+//                    startActivity(intent)
+//
+//            }else{
+//                Log.e("Gestion Compte","Position invalide: $position")
+//            }
+//        }
     }
+
 //    option menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.comptemenu,menu)
+        menuInflater.inflate(R.menu.produit_menu,menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.ajouterCompte ->{
-                var intentAjoutCompte= Intent(this, ajoutCompte_Activity::class.java)
+            R.id.ajouter_produit ->{
+                var intentAjoutCompte= Intent(this, ajoutCompte_Activity ::class.java)
                 startActivity(intentAjoutCompte)
             }
         }
