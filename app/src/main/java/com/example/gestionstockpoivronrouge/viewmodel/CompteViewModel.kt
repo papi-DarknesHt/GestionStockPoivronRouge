@@ -34,13 +34,6 @@ class CompteViewModel(private val repository: CompteRepository) : ViewModel() {
         }
     }
 
-    /*fun listerComptes(onResult: (List<Compte>) -> Unit) {
-        viewModelScope.launch {
-            val comptes = repository.listerComptes()
-            onResult(comptes)
-        }
-    }*/
-
     // Factory intégrée
     class Factory(private val repository: CompteRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

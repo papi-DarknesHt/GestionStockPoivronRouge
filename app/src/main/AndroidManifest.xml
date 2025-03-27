@@ -12,11 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GestionStockPoivronRouge"
         tools:targetApi="31">
-        <activity
-            android:name=".DetailCompte_Activity"
-            android:exported="false"
-            android:theme="@style/Theme.GestionStockPoivronRouge"
-            android:parentActivityName=".Gestion_activity" />
 
         <activity
             android:name=".MainActivity"
@@ -37,6 +32,11 @@
         <activity
             android:name=".Gestion_activity"
             android:label="@string/gestion"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/Theme.GestionStockPoivronRouge"/>
+        <activity
+            android:name=".Produit_Activity"
+            android:label="@string/produit"
             android:parentActivityName=".HomeActivity"
             android:theme="@style/Theme.GestionStockPoivronRouge"/>
         <activity
