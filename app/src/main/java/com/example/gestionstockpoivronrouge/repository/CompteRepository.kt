@@ -24,7 +24,5 @@ val allcomptes: LiveData<List<Compte>> = compteDao.getAllComptes()
         compteDao.supprimerCompte(compte)
     }
 
-    fun listerComptes(): List<Compte> {
-        return compteDao.listerComptes()
-    }
+
 }

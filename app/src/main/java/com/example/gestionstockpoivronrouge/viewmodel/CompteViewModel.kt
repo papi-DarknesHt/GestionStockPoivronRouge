@@ -1,15 +1,14 @@
 package com.example.gestionstockpoivronrouge.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import com.example.gestionstockpoivronrouge.model.Compte
 import com.example.gestionstockpoivronrouge.repository.CompteRepository
 
 class CompteViewModel(private val repository: CompteRepository) : ViewModel() {
 
-    val allComptes :LiveData<List<Compte>> = repository.allcomptes
+    val allComptes: LiveData<List<Compte>> = repository.allcomptes
+
     fun ajouterCompte(compte: Compte, onResult: (Boolean, String) -> Unit) {
         viewModelScope.launch {
             try {
@@ -35,10 +34,21 @@ class CompteViewModel(private val repository: CompteRepository) : ViewModel() {
         }
     }
 
-    fun listerComptes(onResult: (List<Compte>) -> Unit) {
+    /*fun listerComptes(onResult: (List<Compte>) -> Unit) {
         viewModelScope.launch {
             val comptes = repository.listerComptes()
             onResult(comptes)
+        }
+    }*/
+
+    // Factory intégrée
+    class Factory(private val repository: CompteRepository) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(CompteViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return CompteViewModel(repository) as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel class")
         }
     }
 }
