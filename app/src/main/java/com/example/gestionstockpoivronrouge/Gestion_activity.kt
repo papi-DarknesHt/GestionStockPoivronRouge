@@ -3,8 +3,10 @@ package com.example.gestionstockpoivronrouge
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
 import androidx.activity.viewModels
@@ -44,6 +46,7 @@ class Gestion_activity: AppCompatActivity() {
 
         })
 
+
 //        listCompte.onItemClickListener = AdapterView.OnItemClickListener{ _, _, position, _ ->
 //            if(position>=0) {
 //                val clickedCompte = listCompte.getItemAtPosition(position) as Compte
@@ -61,6 +64,15 @@ class Gestion_activity: AppCompatActivity() {
 //        }
     }
 
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+//            menuInflater.Inflate(R.menu.)
+        super.onCreateContextMenu(menu, v, menuInfo)
+    }
+    
 //    option menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.produit_menu,menu)
