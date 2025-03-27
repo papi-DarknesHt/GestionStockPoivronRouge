@@ -3,7 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menuHelp"
-        android:title="Help" />
+        android:icon="@drawable/baseline_help_24"
+        android:title="Help"
+        app:showAsAction="collapseActionView|withText" />
     <item
         android:id="@+id/menuparametre"
         android:title="Setting" />
