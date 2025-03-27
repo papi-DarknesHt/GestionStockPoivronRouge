@@ -44,21 +44,6 @@ class Gestion_activity : AppCompatActivity() {
             }
         })
 
-        listCompte.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            if (position >= 0) {
-                val clickedCompte = listCompte.getItemAtPosition(position) as Compte
-                val intent = Intent(this, DetailCompte_Activity::class.java).apply {
-                    putExtra("id", clickedCompte.id)
-                    putExtra("nom", clickedCompte.nom)
-                    putExtra("prenom", clickedCompte.prenom)
-                    putExtra("email", clickedCompte.email)
-                    putExtra("statut", clickedCompte.statut)
-                }
-                startActivity(intent)
-            } else {
-                Log.e("Gestion Compte", "Position invalide: $position")
-            }
-        }
     }
 
     // Option menu
