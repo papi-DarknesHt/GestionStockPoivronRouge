@@ -4,4 +4,5 @@
     <string name="gestion">Gestion Compte</string>
     <string name="ajout">Creer Compte</string>
     <string name="produit">Gestion Produit</string>
+    <string name="AjoutProduit">Gestion Produit</string>
 </resources>

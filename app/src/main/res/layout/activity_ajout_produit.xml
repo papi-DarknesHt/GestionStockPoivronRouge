@@ -6,36 +6,92 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/nomProduit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="236dp"
+        android:layout_marginTop="124dp"
         android:ems="10"
+        android:hint="Nom Produit"
         android:inputType="text"
-        android:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:text="Button"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCategorieProduit"
+        tools:layout_editor_absoluteX="161dp" />
+
+    <RadioGroup
+        android:id="@+id/radiogroup2"
+        android:layout_width="206dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/qteproduit">
+
+        <RadioButton
+            android:id="@+id/RbVive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vive" />
+
+        <RadioButton
+            android:id="@+id/RbLegume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Legume" />
+
+        <RadioButton
+            android:id="@+id/RbViande"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Viande" />
+
+        <RadioButton
+            android:id="@+id/RbRiz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Riz" />
+
+        <RadioButton
+            android:id="@+id/radioButton5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pois" />
+
+        <RadioButton
+            android:id="@+id/radioButton6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RadioButton" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/qteproduit"
+        android:layout_width="208dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="Quantite Produit"
+        android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="461dp" />
+        app:layout_constraintTop_toBottomOf="@+id/nomProduit" />
+
+    <Spinner
+        android:id="@+id/spinnerCategorieProduit"
+        android:layout_width="211dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/radiogroup2"
+        tools:layout_editor_absoluteX="98dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

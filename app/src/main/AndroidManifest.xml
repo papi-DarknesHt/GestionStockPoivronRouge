@@ -44,6 +44,11 @@
             android:label="@string/ajout"
             android:parentActivityName=".Gestion_activity"
             android:theme="@style/Theme.GestionStockPoivronRouge"/>
+        <activity
+            android:name=".activity_ajout_produit"
+            android:label="@string/AjoutProduit"
+            android:parentActivityName=".Produit_Activity"
+            android:theme="@style/Theme.GestionStockPoivronRouge"/>
     </application>
 
 </manifest>

@@ -35,15 +35,15 @@ class Produit_Activity : AppCompatActivity() {
 
     // Option menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.comptemenu, menu)
+        menuInflater.inflate(R.menu.produit_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.ajouterCompte -> {
-                val intentAjoutCompte = Intent(this, ajoutCompte_Activity::class.java)
-                startActivity(intentAjoutCompte)
+            R.id.ajouter_produit -> {
+                val intentAjoutProduit = Intent(this, activity_ajout_produit::class.java)
+                startActivity(intentAjoutProduit)
             }
         }
         return super.onOptionsItemSelected(item)
