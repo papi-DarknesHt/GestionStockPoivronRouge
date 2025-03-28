@@ -6,7 +6,7 @@ import com.example.gestionstockpoivronrouge.model.Stock
 
 class StockRepository(private val stockDao: StockDao) {
 
-    val allProduits: LiveData<List<Stock>> =stockDao.getAllStocks()
+    val allStock: LiveData<List<Stock>> =stockDao.getAllStocks()
     suspend fun ajouterStock(stock: Stock) {
         stockDao.ajouterStock(stock)
     }

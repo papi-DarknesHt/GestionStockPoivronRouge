@@ -1,57 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp">
 
-    <TextView
-        android:id="@+id/idCompte"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:text="Id"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:padding="16dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/nomCompte"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="Nom"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idCompte" />
+        <!-- Nom et Prénom -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false"> <!-- Important pour aligner les éléments avec des poids -->
 
-    <TextView
-        android:id="@+id/prenomCompte"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="Prenom"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nomCompte" />
+            <TextView
+                android:id="@+id/nomCompte"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nom: Jean"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#000" />
 
-    <TextView
-        android:id="@+id/statuCompte"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="71dp"
-        android:text="Statut"
-        app:layout_constraintStart_toEndOf="@+id/nomCompte"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/statuCompte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Admin"
+                android:textColor="@color/purple_500"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:gravity="end"/> <!-- Ajout de gravity pour aligner à droite -->
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/emailCompte"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="12dp"
-        android:text="email"
-        app:layout_constraintStart_toEndOf="@+id/prenomCompte"
-        app:layout_constraintTop_toBottomOf="@+id/statuCompte" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/prenomCompte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prénom: Dupont"
+            android:textSize="16sp"
+            android:textColor="#333"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Email -->
+        <TextView
+            android:id="@+id/emailCompte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email: jean.dupont@email.com"
+            android:textSize="14sp"
+            android:textColor="#555"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Icônes Modifier & Supprimer (cachées par défaut) -->
+        <LinearLayout
+            android:id="@+id/layoutActions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/btnEdit"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="10dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:contentDescription="Modifier"
+                android:padding="5dp"
+                android:src="@android:drawable/ic_menu_edit" />
+
+            <ImageView
+                android:id="@+id/btnDelete"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:contentDescription="Supprimer"
+                android:padding="5dp"
+                android:src="@android:drawable/ic_menu_delete"
+                android:visibility="visible" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
