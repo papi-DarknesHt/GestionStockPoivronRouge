@@ -22,5 +22,8 @@ interface CompteDao {
     @Query("SELECT * FROM comptes WHERE email = :email LIMIT 1")
     suspend fun getCompteParEmail(email: String): Compte?
 
+    @Query("SELECT * FROM comptes WHERE id = :id LIMIT 1")
+    fun getCompteById(id: Int): LiveData<Compte?>
+
 
 }

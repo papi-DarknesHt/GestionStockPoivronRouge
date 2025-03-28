@@ -2,11 +2,9 @@ package com.example.gestionstockpoivronrouge
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.os.Parcelable
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.AdapterView
-import android.widget.ListView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -38,14 +36,14 @@ class Gestion_activity : AppCompatActivity() {
             mutableListOf(),
             onEditClick = { compte ->
                 // Logique pour modifier le compte
-               /* val intent = Intent(this, EditCompteActivity::class.java)
-                intent.putExtra("compteId", compte.id)
-                startActivity(intent)*/
+                val intent = Intent(this, ajoutCompte_Activity::class.java) // Ou votre activité d'édition
+                intent.putExtra("compte", compte as Parcelable) // Correct
+                // Passez l'objet Compte entier
+                startActivity(intent)
             },
             onDeleteClick = { compte ->
                 // Logique pour supprimer le compte
-               /* compteViewModel.delete(compte) // Supposons que vous avez une méthode pour supprimer un compte
-                Toast.makeText(this, "Compte ${compte.nom} supprimé", Toast.LENGTH_SHORT).show()*/
+                //compteViewModel.supprimerCompte(compte) // Appel à la méthode de suppression dans le ViewModel
             }
         )
 
@@ -61,20 +59,20 @@ class Gestion_activity : AppCompatActivity() {
         })
     }
 
-
     // Option menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.comptemenu, menu)
-        return super.onCreateOptionsMenu(menu)
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
             R.id.ajouterCompte -> {
                 val intentAjoutCompte = Intent(this, ajoutCompte_Activity::class.java)
                 startActivity(intentAjoutCompte)
+                true
             }
+            else -> super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
     }
 }

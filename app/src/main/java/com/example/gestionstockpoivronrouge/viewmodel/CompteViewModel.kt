@@ -27,12 +27,18 @@ class CompteViewModel(private val repository: CompteRepository) : ViewModel() {
         }
     }
 
+
     fun supprimerCompte(compte: Compte, onResult: (Boolean, String) -> Unit) {
         viewModelScope.launch {
             repository.supprimerCompte(compte)
             onResult(true, "Compte supprimé")
         }
     }
+
+    fun getCompteById(compteId: Int): LiveData<Compte?> {
+        return repository.getCompteById(compteId)
+    }
+
 
     // Factory intégrée
     class Factory(private val repository: CompteRepository) : ViewModelProvider.Factory {
