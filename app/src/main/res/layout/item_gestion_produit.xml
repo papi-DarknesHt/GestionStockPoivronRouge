@@ -11,44 +11,101 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <!-- Nom et Prénom -->
-        <LinearLayout
+
+        <!-- Icônes Modifier & Supprimer (cachées par défaut) -->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:baselineAligned="false"> <!-- Important pour aligner les éléments avec des poids -->
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/nomproduit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="#000"
+                android:id="@+id/categorieprod"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="177dp"
+                android:layout_marginBottom="1dp"
+                android:textColor="#333"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/nomproduit" />
 
             <TextView
                 android:id="@+id/codeProduit"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
                 android:gravity="end"
                 android:textColor="@color/purple_500"
                 android:textSize="14sp"
-                android:textStyle="bold" /> <!-- Ajout de gravity pour aligner à droite -->
-        </LinearLayout>
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/categorieprod"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textColor="#333"
-            android:textSize="16sp" />
-        <!-- Icônes Modifier & Supprimer (cachées par défaut) -->
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="23dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="Code Bar: "
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/codeProduit"
+                app:layout_constraintStart_toEndOf="@+id/nomproduit"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:text="Nom:"
+                app:layout_constraintBottom_toTopOf="@+id/textView3"
+                app:layout_constraintEnd_toStartOf="@+id/nomproduit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/nomproduit"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="1dp"
+                android:text="Categorie: "
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/categorieprod"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <LinearLayout
             android:id="@+id/layoutActionsprod"
             android:layout_width="match_parent"
@@ -78,5 +135,6 @@
                 android:src="@android:drawable/ic_menu_delete"
                 android:visibility="visible" />
         </LinearLayout>
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>
