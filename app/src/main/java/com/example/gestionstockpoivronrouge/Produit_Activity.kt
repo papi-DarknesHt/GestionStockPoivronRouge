@@ -31,30 +31,33 @@ class Produit_Activity : AppCompatActivity() {
     }
 
     private fun afficherListeProduit() {
+        val recyclerView = findViewById<RecyclerView>(R.id.listViewProduit)
         gestionProduit_Activity = ProduitAdapter(
             this,
             mutableListOf(),
-            onEditClick = { compte ->
+            onEditClick = { produit ->
                 // Logique pour modifier le compte
                 /* val intent = Intent(this, EditCompteActivity::class.java)
                  intent.putExtra("compteId", compte.id)
                  startActivity(intent)*/
             },
-            onDeleteClick = { compte ->
+            onDeleteClick = { produit ->
                 // Logique pour supprimer le compte
                 /* compteViewModel.delete(compte) // Supposons que vous avez une méthode pour supprimer un compte
                  Toast.makeText(this, "Compte ${compte.nom} supprimé", Toast.LENGTH_SHORT).show()*/
-            }
+            },
+            produitViewModel = produitViewModel
         )
+        recyclerView.adapter = gestionProduit_Activity
 
-        val recyclerView = findViewById<RecyclerView>(R.id.listViewProduit)
+
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = gestionProduit_Activity
 
         // Observer les comptes depuis le ViewModel
         produitViewModel.allProduit.observe(this, Observer { produits ->
             produits?.let {
-                gestionProduit_Activity.setComptes(it)
+                gestionProduit_Activity.setProduit(it)
             }
         })
 
