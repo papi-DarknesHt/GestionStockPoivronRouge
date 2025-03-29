@@ -18,7 +18,18 @@ class HomeActivity: AppCompatActivity() {
         setContentView(R.layout.activity_home)
         produit()
         compte()
+        stock()
     }// fin Oncreate
+
+    private fun stock() {
+        val intentStock =Intent(this,ActivityStock::class.java)
+        var btStock :Button? = findViewById(R.id.btStock)
+        if(btStock != null){
+            btStock.setOnClickListener(View.OnClickListener {
+                startActivity(intentStock)
+            })
+        }
+    }
 
     private fun compte() {
         val intentCompte = Intent(this,Gestion_activity ::class.java)

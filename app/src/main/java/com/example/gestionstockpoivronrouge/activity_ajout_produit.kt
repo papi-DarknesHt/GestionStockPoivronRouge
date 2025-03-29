@@ -64,7 +64,6 @@ class activity_ajout_produit: AppCompatActivity() {
             val nomProd = editTextNomProduit.text.toString().trim()
             val codeProd = editTexcodeBar.text.toString().trim()
             val categorieprod = spinnerCategorie.selectedItem.toString().trim()
-
             // Vérification des champs
             if (nomProd.isEmpty() || codeProd.isEmpty() || categorieprod.isEmpty()) {
                 Toast.makeText(this, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show()
