@@ -1,7 +1,9 @@
 package com.example.gestionstockpoivronrouge
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,29 +46,41 @@ class ProduitAdapter(
             btnDelete.setOnClickListener {
                 val produit = produits[adapterPosition]
                 onDeleteClick(produit)
-                produitViewModel.suprimmerProduit(
-                    produit,
-                    onResult = { success, message ->
-                        if (success) {
-                            // Si la suppression est réussie, retirer l'élément de la liste de données de l'adaptateur
-                            produits.removeAt(adapterPosition)
-                            notifyItemRemoved(adapterPosition)
+                val dialog = AlertDialog.Builder(context)
+                    .setTitle("Confirmation de suppression")
+                    .setMessage("Êtes-vous sûr de vouloir supprimer ce produit ?")
+                    .setPositiveButton("Oui") { _, _ ->
+                        produitViewModel.suprimmerProduit(
+                            produit,
+                            onResult = { success, message ->
+                                if (success) {
+                                    // Si la suppression est réussie, retirer l'élément de la liste de données de l'adaptateur
+                                    produits.removeAt(adapterPosition)
+                                    notifyItemRemoved(adapterPosition)
 
-                            Toast.makeText(
-                                context,
-                                "Produit supprimé avec succès",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } else {
-                            // Si la suppression échoue
-                            Toast.makeText(
-                                context,
-                                message ?: "Erreur lors de la suppression",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
+                                    Toast.makeText(
+                                        context,
+                                        "Produit supprimé avec succès",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                } else {
+                                    // Si la suppression échoue
+                                    Toast.makeText(
+                                        context,
+                                        message ?: "Erreur lors de la suppression",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+                        )
+                    }.setNegativeButton("Non") { dialogInterface: DialogInterface, _ ->
+                        // Si l'utilisateur annule, fermer le dialog
+                        dialogInterface.dismiss()
                     }
-                )
+                    .create()
+
+                // Afficher le dialog
+                dialog.show()
             }
             // Lorsqu'un compte est cliqué, on sélectionne la position et on met à jour l'affichage
             view.setOnClickListener {
