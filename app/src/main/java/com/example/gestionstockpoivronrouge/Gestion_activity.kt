@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -43,8 +44,17 @@ class Gestion_activity : AppCompatActivity() {
             },
             onDeleteClick = { compte ->
                 // Logique pour supprimer le compte
-                //compteViewModel.supprimerCompte(compte) // Appel à la méthode de suppression dans le ViewModel
+                compteViewModel.supprimerCompte(compte) { success, message ->
+                    runOnUiThread {
+                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                        if (success) {
+                            // Met à jour la liste après suppression
+                            compteListeAdapter.notifyDataSetChanged()
+                        }
+                    }
+                }
             }
+
         )
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewCompte)
