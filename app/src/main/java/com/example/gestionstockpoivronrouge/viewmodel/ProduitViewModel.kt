@@ -27,7 +27,7 @@ class ProduitViewModel(private val repository: ProduitRepository) : ViewModel() 
 
     fun suprimmerProduit(produit: Produit, onResult: (Boolean, String) -> Unit) {
         viewModelScope.launch {
-            repository.modifierProduit(produit)
+            repository.supprimerProduit(produit)
             onResult(true, "Produit supprimé")
         }
     }

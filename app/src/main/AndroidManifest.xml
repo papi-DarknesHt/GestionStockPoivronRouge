@@ -17,13 +17,18 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.GestionStockPoivronRouge">
+            android:theme="@style/Theme.GestionStockPoivronRouge"
+
+            >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
         <activity
             android:name=".HomeActivity"
             android:label="@string/homename"
@@ -34,21 +39,25 @@
             android:label="@string/gestion"
             android:parentActivityName=".HomeActivity"
             android:theme="@style/Theme.GestionStockPoivronRouge"/>
+
         <activity
             android:name=".Produit_Activity"
             android:label="@string/produit"
             android:parentActivityName=".HomeActivity"
             android:theme="@style/Theme.GestionStockPoivronRouge"/>
+
         <activity
             android:name=".ajoutCompte_Activity"
             android:label="@string/ajout"
             android:parentActivityName=".Gestion_activity"
             android:theme="@style/Theme.GestionStockPoivronRouge"/>
+
         <activity
             android:name=".activity_ajout_produit"
             android:label="@string/AjoutProduit"
             android:parentActivityName=".Produit_Activity"
             android:theme="@style/Theme.GestionStockPoivronRouge"/>
+
     </application>
 
 </manifest>

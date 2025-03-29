@@ -1,13 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.GestionStockPoivronRouge" parent="Theme.AppCompat.Light">
+    <!-- Thème de base pour l'application -->
+    <style name="Theme.GestionStockPoivronRouge" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Fond de l'ActionBar (rouge) -->
+        <item name="colorPrimary">#F03738</item>
+
+        <!-- Variante de couleur primaire (peut être utilisée pour les survols ou d'autres éléments) -->
+        <item name="colorPrimaryVariant">#000000</item>
+
+        <!-- Couleur du texte de l'ActionBar (blanc pour le titre) -->
+        <item name="colorOnPrimary">#FFFFFF</item>  <!-- Titre de l'ActionBar en blanc -->
+
+        <!-- Couleur de fond de l'ActionBar -->
+        <item name="android:actionBarStyle">@style/CustomActionBar</item>
+    </style>
+
+    <!-- Style de l'ActionBar -->
+    <style name="CustomActionBar" parent="Widget.AppCompat.ActionBar.Solid">
+        <item name="android:background">#F03738</item> <!-- Fond rouge pour l'ActionBar -->
+        <item name="android:titleTextStyle">@style/ActionBarTitleTextStyle</item>
+    </style>
+
+    <!-- Style pour le texte du titre dans l'ActionBar -->
+    <style name="ActionBarTitleTextStyle">
+        <item name="android:textColor">#FFFFFF</item> <!-- Titre en blanc -->
+        <item name="android:textSize">30dp</item>
+    </style>
+
+    <!-- Style pour les éléments du menu ActionBar -->
+    <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Menu" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">#FFFFFF</item> <!-- Texte du menu en blanc -->
+    </style>
+
+    <!-- Thème sans ActionBar si nécessaire pour certaines activités -->
+    <style name="Theme.GestionStockPoivronRouge.NoActionBar" parent="Theme.GestionStockPoivronRouge">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
         <item name="colorPrimary">#E62F27</item>
         <item name="colorPrimaryVariant">#E25049</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
     </style>
-    <style name="Theme.GestionStockPoivronRouge.NoActionBar" parent="Theme.GestionStockPoivronRouge">
-        <item name="windowActionBar">true</item>
-        <item name="windowNoTitle">true</item>
-    </style>
+
 </resources>
