@@ -27,12 +27,22 @@ class CompteViewModel(private val repository: CompteRepository) : ViewModel() {
         }
     }
 
-    fun supprimerCompte(compte: Compte, onResult: (Boolean, String) -> Unit) {
+
+    fun supprimerCompte(compte: Compte, onComplete: (Boolean, String) -> Unit) {
         viewModelScope.launch {
-            repository.supprimerCompte(compte)
-            onResult(true, "Compte supprimé")
+            try {
+                repository.supprimerCompte(compte)
+                onComplete(true, "Compte supprimé avec succès.")
+            } catch (e: Exception) {
+                onComplete(false, "Erreur lors de la suppression du compte.")
+            }
         }
     }
+
+    fun getCompteById(compteId: Int): LiveData<Compte?> {
+        return repository.getCompteById(compteId)
+    }
+
 
     // Factory intégrée
     class Factory(private val repository: CompteRepository) : ViewModelProvider.Factory {

@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("kotlin-kapt") // Ajoute KAPT
+    id("kotlin-parcelize")
 // id("com.google.devtools.ksp") version "1.9.22-1.0.17" // Changed alias(libs.plugins.ksp) to id("com.google.devtools.ksp")
 }
 

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionstockpoivronrouge.model.Compte
 
@@ -34,6 +33,7 @@ class GestionAdapter(
         val statut: TextView = view.findViewById(R.id.statuCompte)
         val btnEdit: ImageView = view.findViewById(R.id.btnEdit)
         val btnDelete: ImageView = view.findViewById(R.id.btnDelete)
+        val layoutActions: View = view.findViewById(R.id.layoutActions)  // Référence au LinearLayout des actions
 
         init {
             // Gérer l'édition et la suppression avec les callbacks
@@ -49,16 +49,11 @@ class GestionAdapter(
 
             // Lorsqu'un compte est cliqué, on sélectionne la position et on met à jour l'affichage
             view.setOnClickListener {
-                btnEdit
-                // Si l'élément cliqué n'est pas un bouton ImageView
-                if (it !is ImageView) {
-                    val previousPosition = selectedPosition
-                    selectedPosition = adapterPosition
-                    notifyItemChanged(previousPosition)  // Masquer les icônes de l'ancien compte sélectionné
-                    notifyItemChanged(selectedPosition)  // Afficher les icônes du nouveau compte sélectionné
-                }
+                val previousPosition = selectedPosition
+                selectedPosition = adapterPosition
+                notifyItemChanged(previousPosition)  // Masquer les icônes de l'ancien compte sélectionné
+                notifyItemChanged(selectedPosition)  // Afficher les icônes du nouveau compte sélectionné
             }
-
         }
     }
 
@@ -70,7 +65,6 @@ class GestionAdapter(
     }
 
     // Lier les données du compte avec les vues de l'item
-    /*@SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: CompteViewHolder, position: Int) {
         val compte = comptes[position]
 
@@ -79,39 +73,9 @@ class GestionAdapter(
         holder.email.text = compte.email
         holder.statut.text = compte.statut
 
-        // Afficher ou cacher les icônes en fonction de la sélection
-        holder.btnEdit.visibility = if (position == selectedPosition) View.VISIBLE else View.GONE
-        holder.btnDelete.visibility = if (position == selectedPosition) View.VISIBLE else View.GONE
-    }*/
-
-    override fun onBindViewHolder(holder: CompteViewHolder, position: Int) {
-        val compte = comptes[position]
-
-        holder.nom.text = compte.nom
-        holder.prenom.text = compte.prenom
-        holder.email.text = compte.email
-        holder.statut.text = compte.statut
-        // ... autres bind ...
-
-        // Afficher ou cacher les icônes en fonction de la sélection
-        holder.btnEdit.visibility = if (position == selectedPosition) View.VISIBLE else View.GONE
-        holder.btnDelete.visibility = if (position == selectedPosition) View.VISIBLE else View.GONE
+        // Afficher ou masquer le LinearLayout des actions en fonction de la position sélectionnée
+        holder.layoutActions.visibility = if (position == selectedPosition) View.VISIBLE else View.GONE
     }
-
-
-    /*@Override
-    fun onBindViewHolder(holder: CompteViewHolder, position: Int) {
-        val compte = comptes[position]
-
-        holder.nom.text = compte.nom
-        holder.prenom.text = compte.prenom
-        holder.email.text = compte.email
-        holder.statut.text = compte.statut
-
-        // Afficher ou masquer les icônes Modifier et Supprimer
-        holder.btnEdit.visibility = if (position == selectedPosition) View.VISIBLE else View.GONE
-        holder.btnDelete.visibility = if (position == selectedPosition) View.VISIBLE else View.GONE
-    }*/
 
     // Retourner la taille de la liste des comptes
     override fun getItemCount(): Int = comptes.size
