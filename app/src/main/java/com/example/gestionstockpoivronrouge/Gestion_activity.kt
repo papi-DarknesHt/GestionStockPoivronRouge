@@ -44,17 +44,10 @@ class Gestion_activity : AppCompatActivity() {
             },
             onDeleteClick = { compte ->
                 // Logique pour supprimer le compte
-                compteViewModel.supprimerCompte(compte) { success, message ->
-                    runOnUiThread {
-                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-                        if (success) {
-                            // Met à jour la liste après suppression
-                            compteListeAdapter.notifyDataSetChanged()
-                        }
-                    }
-                }
-            }
-
+                /* compteViewModel.delete(compte) // Supposons que vous avez une méthode pour supprimer un compte
+                 Toast.makeText(this, "Compte ${compte.nom} supprimé", Toast.LENGTH_SHORT).show()*/
+            },
+            compteViewModel = compteViewModel
         )
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewCompte)

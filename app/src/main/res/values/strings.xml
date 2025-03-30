@@ -5,4 +5,7 @@
     <string name="ajout">Creer Compte</string>
     <string name="produit">Gestion Produit</string>
     <string name="AjoutProduit">Gestion Produit</string>
+    <string name="modifprod">Modifier Produit</string>
+    <string name="stock">Gestion Stock</string>
+    <string name="ajoutStock">Ajout Stock</string>
 </resources>

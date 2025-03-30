@@ -44,12 +44,12 @@
             app:layout_constraintTop_toBottomOf="@+id/btCompt" />
 
         <Button
-            android:id="@+id/btLivr"
+            android:id="@+id/btStock"
             android:layout_width="360dp"
             android:layout_height="48dp"
             android:layout_marginTop="40dp"
             android:background="@drawable/rounded_button"
-            android:text="Statistique"
+            android:text="Stock"
             android:textColor="#FFFFFF"
             android:textSize="34sp"
             android:textStyle="bold"
@@ -63,14 +63,14 @@
             android:layout_height="48dp"
             android:layout_marginTop="40dp"
             android:background="@drawable/rounded_button"
-            android:text="Stock"
+            android:text="Statistique"
             android:textAllCaps="true"
             android:textColor="#FFFFFF"
             android:textSize="34sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btLivr" />
+            app:layout_constraintTop_toBottomOf="@+id/btStock" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

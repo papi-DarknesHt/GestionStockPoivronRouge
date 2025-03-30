@@ -3,59 +3,121 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".activity_ajout_produit">
 
-    <EditText
-        android:id="@+id/nomProduit"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="216dp"
-        android:ems="10"
-        android:hint="Nom Produit"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btajouterProd"
-        android:layout_width="wrap_content"
+    <!-- CardView for stylish container -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/productCard"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="163dp"
-        android:background="@drawable/rounded_button"
-        android:text="Ajouter"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerCategorieProduit"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/codeProd"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:hint="Code Bar"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nomProduit" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_marginTop="10dp">
 
-    <Spinner
-        android:id="@+id/spinnerCategorieProduit"
-        android:layout_width="100dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="256dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/codeProd" />
+            <!-- Nom Produit -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nomProduit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nom Produit"
+                    android:inputType="text"
+                    android:textColorHint="@color/gray"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:importantForAccessibility="yes" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Code Produit -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/codeProd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Code Bar"
+                    android:inputType="numberDecimal"
+                    android:textColorHint="@color/gray"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:importantForAccessibility="yes" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Categorie Produit -->
+            <Spinner
+                android:id="@+id/spinnerCategorieProduit"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="16dp"
+                android:importantForAccessibility="yes"/>
+
+            <!-- Image Produit -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/imageProduit"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_add_a_photo"
+                    android:contentDescription="Image Produit"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/circle_background" />
+
+                <!-- Button to select image -->
+                <Button
+                    android:id="@+id/selectImageButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/ic_add_a_photo"
+                    android:text=""
+                    android:importantForAccessibility="yes" />
+            </RelativeLayout>
+
+            <!-- Ajouter Produit Button -->
+            <Button
+                android:id="@+id/btajouterProd"
+                android:layout_width="146dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_button"
+                android:text="Ajouter"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/spinnerCategorieProduit" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

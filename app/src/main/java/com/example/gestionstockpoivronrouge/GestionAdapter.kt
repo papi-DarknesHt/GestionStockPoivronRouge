@@ -1,19 +1,25 @@
 package com.example.gestionstockpoivronrouge
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionstockpoivronrouge.model.Compte
+import com.example.gestionstockpoivronrouge.viewmodel.CompteViewModel
+import com.example.gestionstockpoivronrouge.viewmodel.ProduitViewModel
 
 class GestionAdapter(
     private val context: Context,
     private var comptes: MutableList<Compte>,  // Liste des comptes à afficher
     private val onEditClick: (Compte) -> Unit,  // Callback pour l'édition
-    private val onDeleteClick: (Compte) -> Unit // Callback pour la suppression
+    private val onDeleteClick: (Compte) -> Unit, // Callback pour la suppression
+    private val compteViewModel: CompteViewModel
 ) : RecyclerView.Adapter<GestionAdapter.CompteViewHolder>() {
 
     private var selectedPosition = -1  // Pour savoir quel compte est sélectionné
@@ -45,6 +51,42 @@ class GestionAdapter(
             btnDelete.setOnClickListener {
                 val compte = comptes[adapterPosition]
                 onDeleteClick(compte) // Appel du callback de suppression
+                val dialog = AlertDialog.Builder(context)
+                    .setTitle("Confirmation de suppression")
+                    .setMessage("Êtes-vous sûr de vouloir supprimer ce compte ?")
+                    .setPositiveButton("Oui") { _, _ ->
+                        compteViewModel.supprimerCompte(
+                            compte,
+                            onResult = { success, message ->
+                                if (success) {
+                                    // Si la suppression est réussie, retirer l'élément de la liste de données de l'adaptateur
+                                    comptes.removeAt(adapterPosition)
+                                    notifyItemRemoved(adapterPosition)
+
+                                    Toast.makeText(
+                                        context,
+                                        "compte supprimé avec succès",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                } else {
+                                    // Si la suppression échoue
+                                    Toast.makeText(
+                                        context,
+                                        message ?: "Erreur lors de la suppression",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+                        )
+                    }.setNegativeButton("Non") { dialogInterface: DialogInterface, _ ->
+                        // Si l'utilisateur annule, fermer le dialog
+                        dialogInterface.dismiss()
+                    }
+                    .create()
+
+                // Afficher le dialog
+                dialog.show()
+
             }
 
             // Lorsqu'un compte est cliqué, on sélectionne la position et on met à jour l'affichage

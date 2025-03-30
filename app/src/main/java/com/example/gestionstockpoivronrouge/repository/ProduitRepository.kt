@@ -6,16 +6,20 @@ import com.example.gestionstockpoivronrouge.model.Produit
 
 class ProduitRepository(private val produitDao: ProduitDao) {
 
+    // Récupérer tous les produits
     val allProduits: LiveData<List<Produit>> = produitDao.getAllProducts()
+
+    // Ajouter un produit (avec image)
     suspend fun ajouterProduit(produit: Produit) {
         produitDao.ajouterProduit(produit)
     }
 
-
+    // Modifier un produit (avec image)
     suspend fun modifierProduit(produit: Produit) {
         produitDao.modifierProduit(produit)
     }
 
+    // Supprimer un produit
     suspend fun supprimerProduit(produit: Produit) {
         produitDao.supprimerProduit(produit)
     }

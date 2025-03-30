@@ -3,6 +3,7 @@ package com.example.gestionstockpoivronrouge.viewmodel
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import com.example.gestionstockpoivronrouge.model.Compte
+import com.example.gestionstockpoivronrouge.model.Produit
 import com.example.gestionstockpoivronrouge.repository.CompteRepository
 
 class CompteViewModel(private val repository: CompteRepository) : ViewModel() {
@@ -28,14 +29,10 @@ class CompteViewModel(private val repository: CompteRepository) : ViewModel() {
     }
 
 
-    fun supprimerCompte(compte: Compte, onComplete: (Boolean, String) -> Unit) {
+    fun supprimerCompte(compte: Compte, onResult: (Boolean, String) -> Unit) {
         viewModelScope.launch {
-            try {
-                repository.supprimerCompte(compte)
-                onComplete(true, "Compte supprimé avec succès.")
-            } catch (e: Exception) {
-                onComplete(false, "Erreur lors de la suppression du compte.")
-            }
+            repository.supprimerCompte(compte)
+            onResult(true, "Produit supprimé")
         }
     }
 
