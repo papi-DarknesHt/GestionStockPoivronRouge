@@ -1,5 +1,6 @@
 package com.example.gestionstockpoivronrouge.viewmodel
 
+import android.widget.Toast
 import androidx.lifecycle.*
 import com.example.gestionstockpoivronrouge.model.Produit
 import com.example.gestionstockpoivronrouge.repository.ProduitRepository
@@ -20,15 +21,18 @@ class ProduitViewModel(private val repository: ProduitRepository) : ViewModel() 
 
     fun modifierProduit(produit: Produit, onResult: (Boolean, String) -> Unit) {
         viewModelScope.launch {
-            repository.modifierProduit(produit)
+            val test =repository.modifierProduit(produit)
             onResult(true, "Produit modifié")
+
         }
     }
 
     fun supprimerProduit(produit: Produit, onResult: (Boolean, String) -> Unit) {
         viewModelScope.launch {
             repository.supprimerProduit(produit)
+
             onResult(true, "Produit supprimé")
+
         }
     }
 

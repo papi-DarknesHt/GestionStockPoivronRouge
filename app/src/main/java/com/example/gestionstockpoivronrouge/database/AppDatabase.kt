@@ -1,7 +1,9 @@
 package com.example.gestionstockpoivronrouge.database
 
 import android.content.Context
-import androidx.room.*
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.example.gestionstockpoivronrouge.dao.CompteDao
 import com.example.gestionstockpoivronrouge.dao.ProduitDao
 import com.example.gestionstockpoivronrouge.dao.StockDao
@@ -11,7 +13,7 @@ import com.example.gestionstockpoivronrouge.model.Stock
 
 @Database(
     entities = [Compte::class, Produit::class, Stock::class], // Ajout des entités Produit et Stock
-    version = 2, // Augmenter la version pour refléter les changements
+    version = 1,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -28,10 +30,8 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "gestion_stock1_db"
-                )
-                    .fallbackToDestructiveMigration() // Permet à Room de recréer la base si nécessaire
-                    .build()
+                    "gestion_stock4_db"
+                ).build()
                 INSTANCE = instance
                 instance
             }
