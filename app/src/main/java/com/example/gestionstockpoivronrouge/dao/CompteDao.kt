@@ -25,5 +25,9 @@ interface CompteDao {
     @Query("SELECT * FROM comptes WHERE id = :id LIMIT 1")
     fun getCompteById(id: Int): LiveData<Compte?>
 
+    @Query("SELECT * FROM comptes WHERE email = :email AND password = :password LIMIT 1")
+    suspend fun authentifier(email: String, password: String): Compte?
+
+
 
 }

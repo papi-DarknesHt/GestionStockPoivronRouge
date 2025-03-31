@@ -108,6 +108,7 @@
                     android:padding="8dp"
                     android:src="@android:drawable/ic_menu_delete"/>
             </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>

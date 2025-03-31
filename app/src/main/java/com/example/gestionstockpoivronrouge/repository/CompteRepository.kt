@@ -32,6 +32,9 @@ val allcomptes: LiveData<List<Compte>> = compteDao.getAllComptes()
         return compteDao.getCompteById(compteId)
     }
 
+    suspend fun authentifier(email: String, password: String): Compte? {
+        return compteDao.authentifier(email, password)
+    }
 
 
 }
