@@ -2,6 +2,7 @@ package com.example.gestionstockpoivronrouge.repository
 
 import androidx.lifecycle.LiveData
 import com.example.gestionstockpoivronrouge.dao.ProduitDao
+import com.example.gestionstockpoivronrouge.model.Compte
 import com.example.gestionstockpoivronrouge.model.Produit
 
 class ProduitRepository(private val produitDao: ProduitDao) {
@@ -22,5 +23,9 @@ class ProduitRepository(private val produitDao: ProduitDao) {
     // Supprimer un produit
     suspend fun supprimerProduit(produit: Produit) {
         produitDao.supprimerProduit(produit)
+    }
+
+    fun getProduitById(produitId: Int): LiveData<Produit?> {
+        return produitDao.getProduitById(produitId)
     }
 }

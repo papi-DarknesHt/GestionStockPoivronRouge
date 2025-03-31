@@ -15,7 +15,4 @@ data class Produit(
     val nom: String,
     val categorie: String,
     val imagePath: String? = null
-    // Nouveau champ pour stocker l'image en tant que ByteArray
-   /* @TypeConverters(Converters::class)  // Utilisation d'un convertisseur pour gérer le ByteArray
-    val image: ByteArray? = null  // L'image est optionnelle (nullable)*/
 ) : Parcelable

@@ -2,6 +2,7 @@ package com.example.gestionstockpoivronrouge.viewmodel
 
 import android.widget.Toast
 import androidx.lifecycle.*
+import com.example.gestionstockpoivronrouge.model.Compte
 import com.example.gestionstockpoivronrouge.model.Produit
 import com.example.gestionstockpoivronrouge.repository.ProduitRepository
 import kotlinx.coroutines.launch
@@ -34,6 +35,10 @@ class ProduitViewModel(private val repository: ProduitRepository) : ViewModel() 
             onResult(true, "Produit supprimé")
 
         }
+    }
+
+    fun getProduitById(produitId: Int): LiveData<Produit?> {
+        return repository.getProduitById(produitId)
     }
 
 
