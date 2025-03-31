@@ -1,20 +1,26 @@
 package com.example.gestionstockpoivronrouge
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gestionstockpoivronrouge.model.Produit
 import com.example.gestionstockpoivronrouge.model.Stock
+import com.example.gestionstockpoivronrouge.viewmodel.StockViewModel
 
 class ActivityStockAdapter(
     private val context: Context,
     private var stocks: MutableList<Stock>,  // Liste des comptes à afficher
     private val onEditClick: (Stock) -> Unit,  // Callback pour l'édition
-    private val onDeleteClick: (Stock) -> Unit // Callback pour la suppression
+    private val onDeleteClick: (Stock) -> Unit, // Callback pour la suppression
+    private val stockViewModel: StockViewModel
 ) : RecyclerView.Adapter<ActivityStockAdapter.StockViewHolder>() {
     private var selectedPosition = -1  // Pour savoir quel Stock est sélectionné
 
@@ -30,7 +36,7 @@ class ActivityStockAdapter(
         val idStock: TextView = view.findViewById(R.id.nomCompte)
         val IdCompteStock: TextView = view.findViewById(R.id.prenomCompte)
         val idProduitStock: TextView = view.findViewById(R.id.TextViewCodeProduitStock)
-        val idQuteStock : TextView = view.findViewById(R.id.TextViewQteStock)
+        val idQuteStock: TextView = view.findViewById(R.id.TextViewQteStock)
         val btnEdit: ImageView = view.findViewById(R.id.btnEdit)
         val btnDelete: ImageView = view.findViewById(R.id.btnDelete)
         val linearLayout: LinearLayout = view.findViewById(R.id.layoutActionsprod)
@@ -60,8 +66,38 @@ class ActivityStockAdapter(
             }
 
         }
-    }
 
+        private fun showDeleteConfirmationDialog(stock: Stock) {
+            val dialog = AlertDialog.Builder(context)
+                .setTitle("Confirmation de suppression")
+                .setMessage("Êtes-vous sûr de vouloir supprimer ce produit ?")
+                .setPositiveButton("Oui") { _, _ ->
+                    stockViewModel.supprimerStock(stock, onResult = { success, message ->
+                        if (success) {
+                            stocks.removeAt(adapterPosition)
+                            notifyItemRemoved(adapterPosition)
+                            Toast.makeText(
+                                context,
+                                "Produit supprimé avec succès",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                context,
+                                message ?: "Erreur lors de la suppression",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    })
+                }
+                .setNegativeButton("Non") { dialogInterface: DialogInterface, _ ->
+                    dialogInterface.dismiss()
+                }
+                .create()
+
+            dialog.show()
+        }
+    }
     // Créer un ViewHolder pour chaque item
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StockViewHolder {
         val view = LayoutInflater.from(context)
@@ -74,7 +110,6 @@ class ActivityStockAdapter(
 
         holder.idStock.text = stock.id.toString().trim()
         holder.idProduitStock.text = stock.id_produit.toString().trim()
-        holder.IdCompteStock.text = stock.idCompte.toString().trim()
         holder.idQuteStock.text = stock.qte.toString().trim()
         // ... autres bind ...
 

@@ -30,7 +30,7 @@ class StockViewModel(private val repository: StockRepository) : ViewModel() {
     }
 
     // Factory intégrée
-    class Factory(private val repository: StockRepository) : ViewModelProvider.Factory {
+    class FactoryStock(private val repository: StockRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(StockViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
