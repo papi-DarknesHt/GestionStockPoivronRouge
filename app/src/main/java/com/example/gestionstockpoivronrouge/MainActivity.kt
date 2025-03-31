@@ -1,69 +1,82 @@
 package com.example.gestionstockpoivronrouge
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.gestionstockpoivronrouge.ui.theme.GestionStockPoivronRougeTheme
-import androidx.appcompat.app.ActionBar
-import androidx.core.content.ContextCompat
+import com.example.gestionstockpoivronrouge.viewmodel.CompteViewModel
+import com.example.gestionstockpoivronrouge.repository.CompteRepository
+import com.example.gestionstockpoivronrouge.dao.CompteDao
+import com.example.gestionstockpoivronrouge.database.AppDatabase
 
 class MainActivity : AppCompatActivity() {
-    @SuppressLint("MissingInflatedId")
+
+    private lateinit var compteDao: CompteDao
+    private lateinit var repository: CompteRepository
+    private val viewModel: CompteViewModel by viewModels {
+        CompteViewModel.Factory(repository)
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        val home = HomeActivity()
-        val intentHome = Intent(this, HomeActivity::class.java)
-//        var mail: EditText? = null; var password: EditText? = null
-        val btlogin: Button? = findViewById<Button>(R.id.connection)
-        if (btlogin != null) {
-            btlogin.setOnClickListener(View.OnClickListener {
-                val mail = findViewById<View>(R.id.mail) as EditText
-                val password = findViewById<View>(R.id.password) as EditText
-                val email: String = mail!!.getText().toString()
-                val psd: String = password!!.getText().toString()
-                mail.setText("")
-                password.setText("")
-                if (email == "napoleonwagnerson@gmail.com" || psd == "admin") {
-                    Toast.makeText(this@MainActivity, "Connection reussi", Toast.LENGTH_SHORT).show()
-                    startActivity(intentHome)
-                } else {
-                    Toast.makeText(
-                        this@MainActivity,
-                        "Email ou Password Incorrect !",
-                        Toast.LENGTH_SHORT
-                    ).show()
+        // Initialisation de la base de données
+        compteDao = AppDatabase.getDatabase(applicationContext).compteDao()
+        repository = CompteRepository(compteDao)
+
+        val mail = findViewById<EditText>(R.id.mail)
+        val password = findViewById<EditText>(R.id.password)
+        val btlogin = findViewById<Button>(R.id.connection)
+
+        btlogin.setOnClickListener {
+            val email = mail.text.toString()
+            val psd = password.text.toString()
+
+            if (email.isEmpty() || psd.isEmpty()) {
+                Toast.makeText(this, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            viewModel.authentifier(email, psd) { compte ->
+                when {
+                    // Cas spécial : connexion en tant qu'admin par défaut
+                    email == "admin@gmail.com" && psd == "admin" -> {
+                        Toast.makeText(this, "Bienvenue, Admin !", Toast.LENGTH_SHORT).show()
+                        val intentHome = Intent(this, HomeActivity::class.java).apply {
+                            putExtra("user_email", email)
+                            putExtra("user_nom", "Administrateur")
+                            putExtra("user_statut", "admin") // Statut défini en dur
+                        }
+                        startActivity(intentHome)
+                        finish()
+                    }
+
+                    // Connexion normale avec un compte existant dans la base de données
+                    compte != null -> {
+                        Toast.makeText(this, "Bienvenue, ${compte.nom} !", Toast.LENGTH_SHORT).show()
+                        val intentHome = Intent(this, HomeActivity::class.java).apply {
+                            putExtra("user_email", compte.email)
+                            putExtra("user_nom", compte.nom)
+                            putExtra("user_statut", compte.statut)
+                        }
+                        startActivity(intentHome)
+                        finish() // Empêche de revenir en arrière à l’écran de connexion
+                    }
+
+                    // Erreur : Email ou mot de passe incorrect
+                    else -> {
+                        Toast.makeText(this, "Email ou mot de passe incorrect !", Toast.LENGTH_SHORT).show()
+                    }
                 }
-            })
+            }
+
         }
 
-
+        }
     }
 
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    GestionStockPoivronRougeTheme {
-        Greeting("Android")
-    }
-}

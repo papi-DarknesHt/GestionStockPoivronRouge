@@ -59,25 +59,25 @@
             android:textSize="14sp" />
 
         <!-- Icônes Modifier & Supprimer (cachées par défaut) -->
+
+
         <LinearLayout
             android:id="@+id/layoutActions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:gravity="end"
             android:orientation="horizontal"
-            android:visibility="visible">
+            android:layout_marginTop="8dp">
 
             <ImageView
                 android:id="@+id/btnEdit"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="8dp"
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="Modifier"
-                android:padding="5dp"
-                android:src="@android:drawable/ic_menu_edit"
-                android:visibility="visible" />
+                android:padding="8dp"
+                android:src="@android:drawable/ic_menu_edit" />
 
             <ImageView
                 android:id="@+id/btnDelete"
@@ -85,9 +85,9 @@
                 android:layout_height="40dp"
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="Supprimer"
-                android:padding="5dp"
-                android:src="@android:drawable/ic_menu_delete"
-                android:visibility="visible" />
+                android:padding="8dp"
+                android:src="@android:drawable/ic_menu_delete" />
         </LinearLayout>
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

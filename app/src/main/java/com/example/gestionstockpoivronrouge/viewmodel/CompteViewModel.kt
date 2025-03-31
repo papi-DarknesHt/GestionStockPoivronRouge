@@ -9,6 +9,8 @@ import com.example.gestionstockpoivronrouge.repository.CompteRepository
 class CompteViewModel(private val repository: CompteRepository) : ViewModel() {
 
     val allComptes: LiveData<List<Compte>> = repository.allcomptes
+    var utilisateurConnecte: Compte? = null
+        private set
 
     fun ajouterCompte(compte: Compte, onResult: (Boolean, String) -> Unit) {
         viewModelScope.launch {
@@ -36,9 +38,19 @@ class CompteViewModel(private val repository: CompteRepository) : ViewModel() {
         }
     }
 
+    fun authentifier(email: String, password: String, onResult: (Compte?) -> Unit) {
+        viewModelScope.launch {
+            val compte = repository.authentifier(email, password)
+            utilisateurConnecte = compte
+            onResult(compte)
+        }
+    }
+
     fun getCompteById(compteId: Int): LiveData<Compte?> {
         return repository.getCompteById(compteId)
     }
+
+
 
 
     // Factory intégrée
