@@ -10,6 +10,11 @@ class ProduitRepository(private val produitDao: ProduitDao) {
     // Récupérer tous les produits
     val allProduits: LiveData<List<Produit>> = produitDao.getAllProducts()
 
+    fun getAllProducts(): LiveData<List<Produit>> {
+        return produitDao.getAllProducts()
+    }
+
+
     // Ajouter un produit (avec image)
     suspend fun ajouterProduit(produit: Produit) {
         produitDao.ajouterProduit(produit)
@@ -25,7 +30,5 @@ class ProduitRepository(private val produitDao: ProduitDao) {
         produitDao.supprimerProduit(produit)
     }
 
-    fun getProduitById(produitId: Int): LiveData<Produit?> {
-        return produitDao.getProduitById(produitId)
-    }
+
 }

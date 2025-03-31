@@ -8,7 +8,7 @@ import com.example.gestionstockpoivronrouge.model.Produit
 @Dao
 interface ProduitDao {
 
-    @Query("SELECT * FROM produit ORDER BY nom ASC")
+    @Query("SELECT * FROM produit")
     fun getAllProducts(): LiveData<List<Produit>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -20,8 +20,12 @@ interface ProduitDao {
     @Delete
     suspend fun supprimerProduit(produit: Produit)
 
-    @Query("SELECT * FROM produit WHERE id = :id")
-    fun getProduitById(id: Int): LiveData<Produit?>
+    @Query("SELECT * FROM produit WHERE id = :produitId")
+    fun getProduitById(produitId: Int): LiveData<Produit>
+
+
+
+
 
     /*@Query("SELECT * FROM comptes WHERE email = :email LIMIT 1")
     suspend fun getCompteParEmail(email: String): Compte?*/

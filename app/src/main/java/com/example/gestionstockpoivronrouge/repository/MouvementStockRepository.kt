@@ -1,4 +1,4 @@
-package com.example.gestionstockpoivronrouge.repository
+/*package com.example.gestionstockpoivronrouge.repository
 
 import androidx.lifecycle.LiveData
 import com.example.gestionstockpoivronrouge.dao.MouvementStockDao
@@ -18,4 +18,4 @@ class MouvementStockRepository(private val mouvementStockDao: MouvementStockDao)
         mouvementStockDao.modifierMouvementStock(mouvementStock)
     }
 
-}
+}*/

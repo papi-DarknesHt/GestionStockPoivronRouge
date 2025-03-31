@@ -37,9 +37,11 @@ class ProduitViewModel(private val repository: ProduitRepository) : ViewModel() 
         }
     }
 
-    fun getProduitById(produitId: Int): LiveData<Produit?> {
-        return repository.getProduitById(produitId)
+
+    fun getAllProducts(): LiveData<List<Produit>> {
+        return repository.getAllProducts()
     }
+
 
 
     class FactoryProduit(private val repository: ProduitRepository) : ViewModelProvider.Factory {

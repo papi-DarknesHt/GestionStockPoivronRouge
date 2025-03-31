@@ -24,7 +24,7 @@ public class main_activity extends Activity {
             password = (EditText) findViewById(R.id.password);
             String email = mail.getText().toString();
             String psd = password.getText().toString();
-            if(email.equals("napoleonwagnerson@gmail.com") && psd.equals("admin")){
+            if(email.equals("admin@gmail.com") && psd.equals("admin")){
                 Toast.makeText(main_activity.this,"Connection reussi",Toast.LENGTH_SHORT).show();
 //            setContentView(R.layout.activity_home);
             }            else{
