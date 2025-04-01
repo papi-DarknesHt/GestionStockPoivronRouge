@@ -16,9 +16,20 @@ class HomeActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        val btCompte : Button = findViewById(R.id.btCompt)
+        val btHistorique : Button = findViewById(R.id.btHistorique)
         produit()
         compte()
         stock()
+        val intent = intent
+        val statut = intent.getStringExtra("user_statut")
+        if (statut != "ADMIN"){
+//            btCompte?.apply {
+//                isEnabled = false  // Désactiver le bouton
+//                alpha = 0.5f       // Réduire l'opacité du bouton
+//            }
+
+        }
     }// fin Oncreate
 
     private fun stock() {
@@ -33,12 +44,11 @@ class HomeActivity: AppCompatActivity() {
 
     private fun compte() {
         val intentCompte = Intent(this,Gestion_activity ::class.java)
-        var btCompte : Button? = findViewById(R.id.btCompt)
-        if (btCompte != null) {
-            btCompte.setOnClickListener(View.OnClickListener {
-                startActivity(intentCompte)
-            })
-        }
+        val btCompte : Button? = findViewById(R.id.btCompt)
+        val btHistorique : Button? = findViewById(R.id.btHistorique)
+        btCompte?.setOnClickListener(View.OnClickListener {
+            startActivity(intentCompte)
+        })
     }
 
     private fun produit() {

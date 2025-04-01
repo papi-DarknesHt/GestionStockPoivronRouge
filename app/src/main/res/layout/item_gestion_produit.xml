@@ -97,7 +97,7 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:contentDescription="Modifier"
                     android:padding="8dp"
-                    android:src="@android:drawable/ic_menu_edit"/>
+                    android:src="@drawable/baseline_mode_edit_24" />
 
                 <ImageView
                     android:id="@+id/btnDeleteProduit"
@@ -106,7 +106,7 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:contentDescription="Supprimer"
                     android:padding="8dp"
-                    android:src="@android:drawable/ic_menu_delete"/>
+                    android:src="@drawable/ic_menu_delete" />
             </LinearLayout>
 
         </LinearLayout>

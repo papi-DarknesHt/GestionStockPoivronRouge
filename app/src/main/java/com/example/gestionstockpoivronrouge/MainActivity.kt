@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         // Initialisation de la base de données
         compteDao = AppDatabase.getDatabase(applicationContext).compteDao()
         repository = CompteRepository(compteDao)
@@ -34,8 +33,8 @@ class MainActivity : AppCompatActivity() {
         val btlogin = findViewById<Button>(R.id.connection)
 
         btlogin.setOnClickListener {
-            val email = mail.text.toString()
-            val psd = password.text.toString()
+            var email = mail.text.toString()
+            var psd = password.text.toString()
 
             if (email.isEmpty() || psd.isEmpty()) {
                 Toast.makeText(this, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show()
@@ -50,8 +49,9 @@ class MainActivity : AppCompatActivity() {
                         val intentHome = Intent(this, HomeActivity::class.java).apply {
                             putExtra("user_email", email)
                             putExtra("user_nom", "Administrateur")
-                            putExtra("user_statut", "admin") // Statut défini en dur
+                            putExtra("user_statut", "ADMIN") // Statut défini en dur
                         }
+
                         startActivity(intentHome)
                         finish()
                     }
@@ -65,10 +65,9 @@ class MainActivity : AppCompatActivity() {
                             putExtra("user_statut", compte.statut)
                         }
                         startActivity(intentHome)
-                        finish() // Empêche de revenir en arrière à l’écran de connexion
+                        finish()
                     }
 
-                    // Erreur : Email ou mot de passe incorrect
                     else -> {
                         Toast.makeText(this, "Email ou mot de passe incorrect !", Toast.LENGTH_SHORT).show()
                     }
@@ -77,6 +76,6 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        }
     }
+}
 
