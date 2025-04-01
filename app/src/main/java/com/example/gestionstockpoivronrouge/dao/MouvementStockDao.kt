@@ -1,4 +1,4 @@
-/*package com.example.gestionstockpoivronrouge.dao
+package com.example.gestionstockpoivronrouge.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -19,4 +19,4 @@ interface MouvementStockDao {
 
     @Update
     fun modifierMouvementStock(mouvementStock: MouvementStock?)
-}*/
+}

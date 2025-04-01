@@ -8,7 +8,4 @@
         android:iconTint="#FFFFFF"
         android:title="Ajouter"
         app:showAsAction="always" />
-    <item
-        android:id="@+id/helpproduit"
-        android:title="help" />
 </menu>

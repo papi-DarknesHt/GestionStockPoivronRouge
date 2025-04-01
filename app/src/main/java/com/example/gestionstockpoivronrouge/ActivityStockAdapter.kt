@@ -33,12 +33,11 @@ class ActivityStockAdapter(
 
     // ViewHolder pour chaque élément dans le RecyclerView
     inner class StockViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val idStock: TextView = view.findViewById(R.id.nomCompte)
-        val IdCompteStock: TextView = view.findViewById(R.id.prenomCompte)
+        val idStock: TextView = view.findViewById(R.id.TextViewIdStock)
         val idProduitStock: TextView = view.findViewById(R.id.TextViewCodeProduitStock)
         val idQuteStock: TextView = view.findViewById(R.id.TextViewQteStock)
-        val btnEdit: ImageView = view.findViewById(R.id.btnEdit)
-        val btnDelete: ImageView = view.findViewById(R.id.btnDelete)
+        val btnEdit: ImageView = view.findViewById(R.id.bteditStock)
+        val btnDelete: ImageView = view.findViewById(R.id.btnDeletestock)
         val linearLayout: LinearLayout = view.findViewById(R.id.layoutActionsprod)
 
         init {
@@ -51,6 +50,7 @@ class ActivityStockAdapter(
             btnDelete.setOnClickListener {
                 val stock = stocks[adapterPosition]
                 onDeleteClick(stock) // Appel du callback de suppression
+                showDeleteConfirmationDialog(stock)
             }
 
             // Lorsqu'un stock est cliqué, on sélectionne la position et on met à jour l'affichage
@@ -118,21 +118,6 @@ class ActivityStockAdapter(
         holder.btnEdit.visibility = if (position == selectedPosition) View.VISIBLE else View.GONE
         holder.btnDelete.visibility = if (position == selectedPosition) View.VISIBLE else View.GONE
     }
-
-
-    /*@Override
-    fun onBindViewHolder(holder: CompteViewHolder, position: Int) {
-        val compte = comptes[position]
-
-        holder.nom.text = compte.nom
-        holder.prenom.text = compte.prenom
-        holder.email.text = compte.email
-        holder.statut.text = compte.statut
-
-        // Afficher ou masquer les icônes Modifier et Supprimer
-        holder.btnEdit.visibility = if (position == selectedPosition) View.VISIBLE else View.GONE
-        holder.btnDelete.visibility = if (position == selectedPosition) View.VISIBLE else View.GONE
-    }*/
 
     // Retourner la taille de la liste des comptes
     override fun getItemCount(): Int = stocks.size

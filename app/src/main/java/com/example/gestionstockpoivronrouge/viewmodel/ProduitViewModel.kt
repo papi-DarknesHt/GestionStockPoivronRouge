@@ -44,6 +44,8 @@ class ProduitViewModel(private val repository: ProduitRepository) : ViewModel() 
 
 
 
+
+
     class FactoryProduit(private val repository: ProduitRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(ProduitViewModel::class.java)) {

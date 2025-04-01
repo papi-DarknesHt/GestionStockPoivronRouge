@@ -7,7 +7,4 @@
         android:icon="@drawable/baseline_add_24"
         android:title="Item"
         app:showAsAction="always" />
-    <item
-        android:id="@+id/btHelpStock"
-        android:title="help" />
 </menu>

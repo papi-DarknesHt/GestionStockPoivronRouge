@@ -1,4 +1,4 @@
-/*package com.example.gestionstockpoivronrouge.model
+package com.example.gestionstockpoivronrouge.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -41,4 +41,3 @@ data class MouvementStock(
     @ColumnInfo(name = "description")
     val  description : String // Justification des sorties
 )
-*/

@@ -58,12 +58,6 @@ class HomeActivity: AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
-            R.id.menuHelp ->{
-
-            }
-            R.id.menuparametre ->{
-
-            }
             R.id.menulogout ->{
                 finish()
             }
