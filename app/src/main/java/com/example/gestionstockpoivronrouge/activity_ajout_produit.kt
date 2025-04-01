@@ -59,7 +59,7 @@ class activity_ajout_produit : AppCompatActivity() {
                 imageViewProduit.setImageBitmap(bitmap)
                 selectedImagePath = produit.imagePath
             }
-            btnAjout.text = "Modifier"
+//            btnAjout.text = "Modifier"
         }
 
         selectImageButton.setOnClickListener {

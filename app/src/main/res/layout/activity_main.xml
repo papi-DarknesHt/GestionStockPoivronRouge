@@ -57,12 +57,11 @@
 
         <Button
             android:id="@+id/connection"
-            android:layout_width="150dp"
+            android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
-            android:background="@drawable/rounded_button"
-            android:text="Login"
+            android:background="@drawable/baseline_login_24"
             android:textColor="#FFFFFF"
             android:textSize="34sp"
             android:textStyle="bold"

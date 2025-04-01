@@ -48,7 +48,6 @@ class ajoutCompte_Activity : AppCompatActivity() {
                 "MANAGER" -> radioGroup.check(R.id.rbtstatutManager)
             }
 
-            btnAjout.text = "Modifier le compte" // Mise à jour du texte du bouton
         }
 
         // Gestion du clic sur le bouton d'ajout/modification
