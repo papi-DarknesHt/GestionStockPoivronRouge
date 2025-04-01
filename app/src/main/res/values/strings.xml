@@ -7,5 +7,5 @@
     <string name="AjoutProduit">Gestion Produit</string>
     <string name="modifprod">Modifier Produit</string>
     <string name="stock">Gestion Stock</string>
-    <string name="ajoutStock">Ajout Stock</string>
+    <string name="ajoutStock">Gestion Stock</string>
 </resources>

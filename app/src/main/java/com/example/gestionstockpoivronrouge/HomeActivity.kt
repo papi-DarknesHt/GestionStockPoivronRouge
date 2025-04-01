@@ -17,7 +17,6 @@ class HomeActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         val btCompte : Button = findViewById(R.id.btCompt)
-        val btHistorique : Button = findViewById(R.id.btHistorique)
         produit()
         compte()
         stock()
@@ -45,7 +44,6 @@ class HomeActivity: AppCompatActivity() {
     private fun compte() {
         val intentCompte = Intent(this,Gestion_activity ::class.java)
         val btCompte : Button? = findViewById(R.id.btCompt)
-        val btHistorique : Button? = findViewById(R.id.btHistorique)
         btCompte?.setOnClickListener(View.OnClickListener {
             startActivity(intentCompte)
         })

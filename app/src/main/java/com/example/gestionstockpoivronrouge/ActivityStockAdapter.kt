@@ -2,7 +2,6 @@ package com.example.gestionstockpoivronrouge
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,118 +9,176 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.gestionstockpoivronrouge.model.Produit
 import com.example.gestionstockpoivronrouge.model.Stock
 import com.example.gestionstockpoivronrouge.viewmodel.StockViewModel
+import com.example.gestionstockpoivronrouge.viewmodel.ProduitViewModel
 
 class ActivityStockAdapter(
     private val context: Context,
-    private var stocks: MutableList<Stock>,  // Liste des comptes à afficher
-    private val onEditClick: (Stock) -> Unit,  // Callback pour l'édition
-    private val onDeleteClick: (Stock) -> Unit, // Callback pour la suppression
-    private val stockViewModel: StockViewModel
+    private var stocks: MutableList<Stock>,
+    private val onEditClick: (Stock) -> Unit,
+    private val onDeleteClick: (Stock) -> Unit,
+    private val stockViewModel: StockViewModel,
+    private val produitViewModel: ProduitViewModel,
+    private val lifecycleOwner: LifecycleOwner
 ) : RecyclerView.Adapter<ActivityStockAdapter.StockViewHolder>() {
-    private var selectedPosition = -1  // Pour savoir quel Stock est sélectionné
 
-    // Méthode pour mettre à jour la liste des comptes
+    private val produitsCache = mutableMapOf<Int, Produit?>()
+    private var selectedPosition = -1  // Position de l'élément sélectionné
+
     fun setStocks(newStock: List<Stock>) {
         stocks.clear()
-        stocks.addAll(newStock)  // Ajout des nouveaux comptes à la liste
-        notifyDataSetChanged()  // Notifie l'adaptateur que les données ont changé
+        stocks.addAll(newStock)
+        notifyDataSetChanged()
     }
 
-    // ViewHolder pour chaque élément dans le RecyclerView
     inner class StockViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val idStock: TextView = view.findViewById(R.id.TextViewIdStock)
-        val idProduitStock: TextView = view.findViewById(R.id.TextViewCodeProduitStock)
-        val idQuteStock: TextView = view.findViewById(R.id.TextViewQteStock)
-        val btnEdit: ImageView = view.findViewById(R.id.bteditStock)
-        val btnDelete: ImageView = view.findViewById(R.id.btnDeletestock)
-        val linearLayout: LinearLayout = view.findViewById(R.id.layoutActionsprod)
+        val imageProduit: ImageView = view.findViewById(R.id.imageProduitStock)
+        val nomProduit: TextView = view.findViewById(R.id.nomProduitStock)
+        val codeProduit: TextView = view.findViewById(R.id.codeProduitStock)
+        val quantiteProduit: TextView = view.findViewById(R.id.quantiteProduitStock)
+        val btnPlus: ImageView = view.findViewById(R.id.btnIncreaseStock)
+        val btnMinus: ImageView = view.findViewById(R.id.btnDecreaseStock)
+        val btnEdit: ImageView = view.findViewById(R.id.btnEditStock)
+        val btnDelete: ImageView = view.findViewById(R.id.btnDeleteStock)
+        val layoutActions: LinearLayout = view.findViewById(R.id.layoutActionsStock)
 
         init {
-            // Gérer l'édition et la suppression avec les callbacks
-            btnEdit.setOnClickListener {
+            // Augmenter la quantité
+            btnPlus.setOnClickListener {
                 val stock = stocks[adapterPosition]
-                onEditClick(stock) // Appel du callback d'édition
+                modifierQuantite(stock, 1)
             }
 
+            // Diminuer la quantité
+            btnMinus.setOnClickListener {
+                val stock = stocks[adapterPosition]
+                if (stock.qte > 0) {
+                    modifierQuantite(stock, -1)
+                } else {
+                    Toast.makeText(context, "Stock insuffisant", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            // Bouton Modifier
+            btnEdit.setOnClickListener {
+                val stock = stocks[adapterPosition]
+                onEditClick(stock)
+            }
+
+            // Bouton Supprimer
+            // Bouton Supprimer
             btnDelete.setOnClickListener {
                 val stock = stocks[adapterPosition]
-                onDeleteClick(stock) // Appel du callback de suppression
                 showDeleteConfirmationDialog(stock)
             }
 
-            // Lorsqu'un stock est cliqué, on sélectionne la position et on met à jour l'affichage
+            // Sélection de l'élément
             view.setOnClickListener {
-                btnEdit
-                // Si l'élément cliqué n'est pas un bouton ImageView
-                if (it !is ImageView) {
-                    val previousPosition = selectedPosition
-                    selectedPosition = adapterPosition
-                    notifyItemChanged(previousPosition)  // Masquer les icônes de l'ancien compte sélectionné
-                    notifyItemChanged(selectedPosition)  // Afficher les icônes du nouveau compte sélectionné
-                }
+                val previousPosition = selectedPosition
+                selectedPosition = adapterPosition
+                notifyItemChanged(previousPosition)  // Masquer actions du précédent
+                notifyItemChanged(selectedPosition)  // Afficher actions du nouveau
             }
-
         }
 
+        // Modifier la quantité du stock
+        private fun modifierQuantite(stock: Stock, variation: Int) {
+            val nouvelleQuantite = stock.qte + variation
+            stock.qte = nouvelleQuantite
+
+            // Mise à jour dans la base de données
+            stockViewModel.modifierStock(stock) { success, message ->
+                if (success) {
+                    notifyItemChanged(adapterPosition)
+                    Toast.makeText(context, "Stock mis à jour", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(context, message ?: "Erreur", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        // Boîte de dialogue de confirmation pour suppression
         private fun showDeleteConfirmationDialog(stock: Stock) {
-            val dialog = AlertDialog.Builder(context)
+            AlertDialog.Builder(context)
                 .setTitle("Confirmation de suppression")
-                .setMessage("Êtes-vous sûr de vouloir supprimer ce produit ?")
+                .setMessage("Voulez-vous vraiment supprimer ce stock ?")
                 .setPositiveButton("Oui") { _, _ ->
-                    stockViewModel.supprimerStock(stock, onResult = { success, message ->
+                    stockViewModel.supprimerStock(stock) { success, message ->
                         if (success) {
                             stocks.removeAt(adapterPosition)
                             notifyItemRemoved(adapterPosition)
-                            Toast.makeText(
-                                context,
-                                "Produit supprimé avec succès",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Toast.makeText(context, "Stock supprimé", Toast.LENGTH_SHORT).show()
                         } else {
-                            Toast.makeText(
-                                context,
-                                message ?: "Erreur lors de la suppression",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Toast.makeText(context, message ?: "Erreur", Toast.LENGTH_SHORT).show()
                         }
-                    })
+                    }
                 }
-                .setNegativeButton("Non") { dialogInterface: DialogInterface, _ ->
-                    dialogInterface.dismiss()
-                }
-                .create()
-
-            dialog.show()
+                .setNegativeButton("Non") { dialog, _ -> dialog.dismiss() }
+                .show()
         }
     }
-    // Créer un ViewHolder pour chaque item
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StockViewHolder {
-        val view = LayoutInflater.from(context)
-            .inflate(R.layout.item_gestion_stock, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_gestion_stock, parent, false)
         return StockViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: StockViewHolder, position: Int) {
         val stock = stocks[position]
 
-        holder.idStock.text = stock.id.toString().trim()
-        holder.idProduitStock.text = stock.id_produit.toString().trim()
-        holder.idQuteStock.text = stock.qte.toString().trim()
-        // ... autres bind ...
+        // Valeurs par défaut
+        holder.nomProduit.text = "Chargement..."
+        holder.codeProduit.text = "Code: --"
+        holder.imageProduit.setImageResource(R.drawable.ic_placeholder_image)
 
-        // Afficher ou cacher les icônes en fonction de la sélection
-        holder.linearLayout.visibility = if (position == selectedPosition) View.VISIBLE else View.GONE
-        holder.btnEdit.visibility = if (position == selectedPosition) View.VISIBLE else View.GONE
-        holder.btnDelete.visibility = if (position == selectedPosition) View.VISIBLE else View.GONE
+        // Vérifier si le produit est déjà en cache
+        if (produitsCache.containsKey(stock.id_produit)) {
+            val produit = produitsCache[stock.id_produit]
+            afficherProduit(holder, produit)
+        } else {
+            // Observer les données du produit si pas dans le cache
+            produitViewModel.getProduitById(stock.id_produit).observe(lifecycleOwner, Observer { produit ->
+                produitsCache[stock.id_produit] = produit // Ajouter au cache
+                afficherProduit(holder, produit)
+            })
+        }
+
+        // Affichage de la quantité
+        holder.quantiteProduit.text = "Quantité: ${stock.qte}"
+
+        // Afficher/Masquer les icônes Modifier & Supprimer selon la sélection
+        holder.layoutActions.visibility = if (position == selectedPosition) View.VISIBLE else View.GONE
     }
 
-    // Retourner la taille de la liste des comptes
+    private fun afficherProduit(holder: StockViewHolder, produit: Produit?) {
+        if (produit != null) {
+            holder.nomProduit.text = produit.nom ?: "Produit inconnu"
+            holder.codeProduit.text = "Code: ${produit.code ?: "N/A"}"
+
+            if (!produit.imagePath.isNullOrEmpty()) {
+                Glide.with(context).load(produit.imagePath).into(holder.imageProduit)
+            } else {
+                holder.imageProduit.setImageResource(R.drawable.ic_placeholder_image)
+            }
+        } else {
+            holder.nomProduit.text = "Produit inconnu"
+            holder.codeProduit.text = "Code: N/A"
+            holder.imageProduit.setImageResource(R.drawable.ic_placeholder_image)
+        }
+    }
+
+    fun updateProduit(produit: Produit) {
+        val index = stocks.indexOfFirst { it.id_produit == produit.id }
+        if (index != -1) {
+            notifyItemChanged(index)
+        }
+    }
+
     override fun getItemCount(): Int = stocks.size
-
-
-
 }

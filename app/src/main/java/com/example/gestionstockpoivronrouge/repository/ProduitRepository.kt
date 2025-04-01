@@ -30,5 +30,9 @@ class ProduitRepository(private val produitDao: ProduitDao) {
         produitDao.supprimerProduit(produit)
     }
 
+    fun getProduitById(produitId: Int): LiveData<Produit?> {
+        return produitDao.getProduitById(produitId) as LiveData<Produit?>
+    }
+
 
 }

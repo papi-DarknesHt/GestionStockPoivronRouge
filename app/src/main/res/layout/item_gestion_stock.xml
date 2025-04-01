@@ -2,133 +2,136 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="5dp">
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp"
+    app:cardBackgroundColor="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="horizontal"
+        android:padding="12dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="365dp"
-            android:layout_height="109dp">
+        <!-- Image du produit -->
+        <ImageView
+            android:id="@+id/imageProduitStock"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_placeholder_image"
+            android:background="@drawable/circle_border"
+            android:elevation="6dp"/>
+
+        <!-- Informations du produit -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/nomProduitStock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="30dp"
-                android:text="Code Produit: "
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TextViewIdStock" />
+                android:text="Nom du produit"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/TextViewQteStock"
-                android:layout_width="100dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="3dp"
-                android:layout_marginTop="17dp"
-                android:layout_marginEnd="16dp"
-                android:layout_weight="1"
-                android:textColor="#000"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView3"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/codeProduitStock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="23dp"
-                android:layout_marginTop="18dp"
-                android:text="Quantite: "
-                app:layout_constraintStart_toEndOf="@+id/TextViewIdStock"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:text="Nom produit"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/TextViewCodeProduitStock"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_marginTop="28dp"
-                android:gravity="end"
+                android:text="Code: XXXXX"
                 android:textColor="@color/purple_500"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/textView5"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                android:layout_marginTop="4dp"/>
 
             <TextView
-                android:id="@+id/TextViewIdStock"
-                android:layout_width="100dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="3dp"
-                android:layout_marginTop="16dp"
-                android:textColor="#333"
-                android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/textView2"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:id="@+id/quantiteProduitStock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantité: 10"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp"/>
 
+        </LinearLayout>
+
+        <!-- Actions (Ajouter/Enlever la quantité et Historique) -->
         <LinearLayout
-            android:id="@+id/layoutActionsprod"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!-- Boutons pour augmenter et diminuer la quantité -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <!-- Bouton + -->
+                <ImageView
+                    android:id="@+id/btnIncreaseStock"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="Augmenter la quantité"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_plus" /> <!-- Utiliser l'icône + -->
+
+                <!-- Bouton - -->
+                <ImageView
+                    android:id="@+id/btnDecreaseStock"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="Diminuer la quantité"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_minus" /> <!-- Utiliser l'icône - -->
+            </LinearLayout>
+
+
+        <!-- Actions (Supprimer) -->
+        <LinearLayout
+            android:id="@+id/layoutActionsStock"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:gravity="end"
-            android:orientation="horizontal"
-            android:visibility="gone">
+            android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/btnhistorique"
+                android:id="@+id/btnEditStock"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginEnd="10dp"
-                app:srcCompat="@drawable/baseline_history_24" />
-
-            <ImageView
-                android:id="@+id/bteditStock"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="8dp"
+                android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="Modifier"
-                android:padding="5dp"
+                android:padding="8dp"
                 android:src="@drawable/baseline_mode_edit_24" />
 
+            <!-- Bouton Supprimer -->
             <ImageView
-                android:id="@+id/btnDeletestock"
+                android:id="@+id/btnDeleteStock"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="Supprimer"
-                android:padding="5dp"
-                android:src="@drawable/ic_menu_delete"
-                android:visibility="visible" />
+                android:padding="8dp"
+                android:src="@drawable/ic_menu_delete" />
 
+            <!-- Utiliser l'icône d'historique -->
+        </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
-
-
 </androidx.cardview.widget.CardView>

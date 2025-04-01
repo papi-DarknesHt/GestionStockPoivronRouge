@@ -23,7 +23,7 @@ data class Stock(
     @ColumnInfo(name = "id_produit")
     val id_produit: Int,
     @ColumnInfo(name = "Quantite")
-    val qte: Int,
+    var qte: Int,
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),

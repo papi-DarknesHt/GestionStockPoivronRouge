@@ -21,7 +21,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun compteDao(): CompteDao
     abstract fun produitDao(): ProduitDao  // Ajout du DAO pour Produit
     abstract fun stockDao(): StockDao      // Ajout du DAO pour Stock
-    //abstract  fun mouvementStockDao() :MouvementStockDao
 
     companion object {
         @Volatile
